@@ -9,7 +9,7 @@ namespace Bookstore.Service
 {
     public class AuthorService
     {
-        private List<Author> authorList = new List<Author>()
+        private List<Author> authorList = new List<Author>
         {
             new Author
             {
@@ -51,3 +51,4 @@ namespace Bookstore.Service
         }
     }
 }
+    

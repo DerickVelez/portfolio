@@ -8,14 +8,14 @@ namespace Bookstore.Data.Entitites
 {
     public class Order
     {
-        public DateOnly OrderDate { get; set; }
-        
+        public DateTime OrderDate { get; set; }
+
         public string OrderValue { get; set; }
 
         public int CustomerID { get; set; }
     }
 }
 
+    
 
 
-+

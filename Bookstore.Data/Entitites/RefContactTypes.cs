@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Data.Entitites
 {
-    public  class RefContancts
+    public  class RefContactTypes
     {
         public int ContactCode { get; set; }
 
