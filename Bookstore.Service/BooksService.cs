@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Service
 {
-    public class BooksServices
+    public class BooksService
     {
         private List<Books> booksList = new List<Books>
         {
