@@ -39,11 +39,11 @@ namespace Bookstore.Service
             customerList.Remove(customer);
         }
 
-        public void Update(Customer customer)
+        public void Update(Customer UpdatedCustomer)
         {
             
-            var selectCustomer = customerList.Where(a => a.CustomerID == customer.CustomerID).FirstOrDefault();
-            selectCustomer = customer;
+                var selectCustomer = customerList.Where(customer => customer.CustomerID == UpdatedCustomer.CustomerID).FirstOrDefault();
+                selectCustomer = UpdatedCustomer;
         }
 
         public Customer? FindById(int customerId)
