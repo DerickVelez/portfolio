@@ -6,9 +6,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\CarHire,.Data\CarHire.Data.csproj" />
-    <ProjectReference Include="..\CarHire.Service\CarHire.Service.csproj" />
-  </ItemGroup>
-
 </Project>

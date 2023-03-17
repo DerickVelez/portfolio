@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CarHire,.Data\CarHire.Data.csproj" />
-    <ProjectReference Include="..\CarHire.Service\CarHire.Service.csproj" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
 </Project>

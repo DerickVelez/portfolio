@@ -18,8 +18,6 @@ namespace CarHire.Service
                 ManufacturerName = "Toyota",
             }
             };
-
-
         public List<Manufacturer> GetManufacturer()
         {
             return Manufacturers;
@@ -44,6 +42,7 @@ namespace CarHire.Service
         public Manufacturer? FindById(int ManufacturerCode)
         {
             return Manufacturers.Where(unit => unit.ManufacturerCode == ManufacturerCode).FirstOrDefault();
+
         }
     }
 }
