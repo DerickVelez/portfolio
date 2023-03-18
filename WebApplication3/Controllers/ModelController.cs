@@ -23,5 +23,10 @@ namespace CarHire.WebAPI.Controller
             _modelService.Add(model);
             return model;
         }
+        [HttpPut]
+        public Model Update(Model model)
+        { _modelService.Update(model);
+            return model;
+        }
     }
 }

@@ -48,9 +48,5 @@ namespace Bookstore.Service
             return orderitemsList.Where(a => a.ItemNumber == itemnumber).FirstOrDefault();
         }
 
-
-
-
-
     }
 }

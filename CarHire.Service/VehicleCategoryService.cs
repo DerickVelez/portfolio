@@ -19,7 +19,7 @@ namespace CarHire.Service
             }
         };
 
-        public List<VehicleCategory> GetVehicles()
+        public List<VehicleCategory> GetVehicleCategory()
         {
             return VehicleCategories;
         }

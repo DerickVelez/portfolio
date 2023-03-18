@@ -25,6 +25,12 @@ namespace Bookstore.WebAPI.Controllers
             _ContactsService.Add(contacts);
             return contacts;
         }
+        [HttpPut]
+        public Contacts Update(Contacts contacts)
+        {
+            _ContactsService.Update(contacts);
+            return contacts;
+        }
     }
 
 

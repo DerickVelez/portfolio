@@ -25,7 +25,13 @@ namespace Bookstore.WebAPI.Controllers
         {
             _RefContactTypesService.Add(refcontacttypes);
             return refcontacttypes;
+        }
+        [HttpPut]
 
+        public RefContactTypes Update(RefContactTypes refcontacttypes)
+        {
+            _RefContactTypesService.Update(refcontacttypes);
+            return refcontacttypes;
         }
 
         

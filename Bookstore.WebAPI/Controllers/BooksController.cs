@@ -25,5 +25,11 @@ namespace Bookstore.WebAPI.Controllers
             _BooksService.Add(books);
             return books;  
         }
+        [HttpPut]
+        public Books Update(Books books)
+        {
+            _BooksService.Update(books);
+            return books;
+        }
     }
 }

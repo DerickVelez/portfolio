@@ -23,7 +23,12 @@ namespace Bookstore.WebAPI.Controllers
             _BookCategoriesService.Add(bookCategories);
             return bookCategories;
         }
-
+        [HttpPut]
+        public BookCategories Update(BookCategories bookCategories)
+        {
+            _BookCategoriesService.Update(bookCategories);
+            return bookCategories;
+        }
     }
 
 }

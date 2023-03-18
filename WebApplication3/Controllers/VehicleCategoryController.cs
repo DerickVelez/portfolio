@@ -9,18 +9,24 @@ namespace CarHire.WebAPI.Controller
     [ApiController]
     public class VehicleCategoryController : ControllerBase
     {
-        private static ModelService _modelService { get; set; } = new ModelService();
+        private static VehicleCategoryService _vehiclecategoryservice { get; set; } = new VehicleCategoryService();
 
         [HttpGet]
-        public List<Model> Get()
+        public List<VehicleCategory> GetVehicleCategory()
         {
-            return _modelService.GetModel();
+            return _vehiclecategoryservice.GetVehicleCategory();
         }
         [HttpPost]
-        public Model Add(Model model)
+        public VehicleCategory Add(VehicleCategory vehiclecategory)
         {
-            _modelService.Add(model);
-                return model;
+            _vehiclecategoryservice.Add(vehiclecategory);
+                return vehiclecategory;
+        }
+        [HttpPut]
+        public VehicleCategory Update(VehicleCategory vehiclecategory)
+        {
+            _vehiclecategoryservice.Update(vehiclecategory);
+            return vehiclecategory;
         }
     }
 }

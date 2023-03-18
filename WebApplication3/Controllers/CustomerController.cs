@@ -22,5 +22,11 @@ namespace CarHire.WebAPI.Controller
             _customerService.Add(customer);
             return customer;
         }
+        [HttpPut]
+        public Customer Update(Customer customer)
+        {
+            _customerService.Update(customer);
+            return customer;
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Bookstore.Data.Entitites;
+﻿ using Bookstore.Data.Entitites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +47,6 @@ namespace Bookstore.Service
         public Contacts? FindById(int contactID)
         {
             return contactList.Where(a => a.CondtactID == contactID).FirstOrDefault();
-
         }
     }
 

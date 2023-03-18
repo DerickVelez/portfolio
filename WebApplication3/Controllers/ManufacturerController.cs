@@ -23,6 +23,11 @@ namespace CarHire.WebAPI.Controller
             _manufacturerService.Add(manufacturer);
             return manufacturer;
         }
-
+        [HttpPut]
+        public Manufacturer Update(Manufacturer manufacturer)
+        {
+            _manufacturerService.Update(manufacturer);
+            return manufacturer;
+        }
     }   
 }

@@ -25,5 +25,12 @@ namespace Bookstore.WebAPI.Controllers
             return author;
         }
 
+        [HttpPut]
+        public Author Update(Author author)
+        {
+            _AuthorService.Update(author);
+            return author;
+        }
+
     }
 }

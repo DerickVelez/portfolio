@@ -24,5 +24,11 @@ namespace Bookstore.WebAPI.Controllers
             _OrderService.Add(order);
             return order;
         }
+        [HttpPut]
+        public Order Update(Order order)
+        {
+            _OrderService.Update(order);
+            return order;
+        }
     }
 }
