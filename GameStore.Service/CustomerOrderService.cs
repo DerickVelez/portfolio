@@ -19,7 +19,7 @@ namespace GameStore.Service
             }
         };
 
-        public List<CustomerOrders> Get()
+        public List<CustomerOrders> GetCustomerOrders()
         {
             return customerorderList;
         }

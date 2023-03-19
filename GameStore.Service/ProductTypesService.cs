@@ -18,7 +18,7 @@ namespace GameStore.Service
 
             }
         };
-         public List<ProductTypes> Get()
+         public List<ProductTypes> GetProductTypes()
         {
             return productTypesList;
         }

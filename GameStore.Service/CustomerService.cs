@@ -27,6 +27,10 @@ namespace GameStore.Service
 
             }
         };
+        public List<Customer> GetCustomer()
+        {
+            return customerList;
+        }
 
         public void Add(Customer customer)
         {

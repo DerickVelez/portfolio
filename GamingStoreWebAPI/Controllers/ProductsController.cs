@@ -1,0 +1,33 @@
+﻿using GameStore.Service;
+using GamingStore.Data;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace GamingStoreWebAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductsController : ControllerBase
+    {
+        private static ProductsService _productsService { get; set; } = new ProductsService();
+
+        [HttpGet]
+        public List<Products> Get()
+        {
+           return _productsService.GetProducts();
+          
+        }
+        [HttpPost]
+        public Products Add(Products products)
+        {
+            _productsService.Add(products);
+            return products;
+        }
+        [HttpPut]
+        public Products Update(Products products)
+        {
+            _productsService.Update(products);
+            return products;
+        }
+    }
+}

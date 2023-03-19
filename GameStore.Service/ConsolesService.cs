@@ -19,7 +19,7 @@ namespace GameStore.Service
             }
         };
 
-        public List<Consoles> Get()
+        public List<Consoles> GetConsoles()
         {
             return consolesList;
         }

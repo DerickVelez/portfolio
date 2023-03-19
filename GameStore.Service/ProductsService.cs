@@ -20,7 +20,7 @@ namespace GameStore.Service
                 ProductTypeCode = 45,
             }
         };
-        public List<Products> Get()
+        public List<Products> GetProducts()
         {
             return productsList;
         }

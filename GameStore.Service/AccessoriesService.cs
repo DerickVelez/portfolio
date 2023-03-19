@@ -14,7 +14,7 @@ namespace GameStore.Service
             }
         };
 
-        public List<Accessories> Get()
+        public List<Accessories> GetAccessories()
         {
             return accessoriesList;
         }

@@ -21,7 +21,7 @@ namespace GameStore.Service
             }
         };
 
-        public List<Games> Get()
+        public List<Games> GetGames()
         {
             return gamesserviceList;
         }
