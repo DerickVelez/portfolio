@@ -9,7 +9,7 @@ namespace Bookstore.WebAPI.Controllers
     [ApiController]
     public class AuthorController : ControllerBase
     {
-        private static AuthorService _AuthorService { get; set; } = new AuthorService();
+        private static AuthorService _AuthorService = new AuthorService();
 
         [HttpGet]
         public List<Author> Get()
@@ -29,6 +29,13 @@ namespace Bookstore.WebAPI.Controllers
         public Author Update(Author author)
         {
             _AuthorService.Update(author);
+            return author;
+        }
+        [HttpDelete]
+
+        public Author Delete(Author author)
+        {
+            _AuthorService.DeleteAuthor(author);
             return author;
         }
 

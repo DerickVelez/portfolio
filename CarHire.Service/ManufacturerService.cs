@@ -9,7 +9,7 @@ namespace CarHire.Service
 {
     public class ManufacturerService
     {
-        private List<Manufacturer> Manufacturers = new List<Manufacturer>
+        private List<Manufacturer> Manufacturerslist = new List<Manufacturer>
         { 
             new Manufacturer
             {
@@ -20,28 +20,30 @@ namespace CarHire.Service
             };
         public List<Manufacturer> GetManufacturer()
         {
-            return Manufacturers;
+            return Manufacturerslist;
         }
 
         public void Add(Manufacturer manufacturer)
         {
-            Manufacturers.Add(manufacturer);
+            Manufacturerslist.Add(manufacturer);
         }
 
         public void Delete(Manufacturer manufacturer)
         {
-            Manufacturers.Remove(manufacturer);
+            Manufacturerslist.Remove(manufacturer);
         }
 
         public void Update(Manufacturer manufacturer)
         {
-            var selectedManufacturer = Manufacturers.Where(unit => unit.ManufacturerCode == manufacturer.ManufacturerCode).FirstOrDefault();
-            selectedManufacturer = manufacturer;
+            var selectedManufacturer = Manufacturerslist.Where(
+                a => a.ManufacturerCode == manufacturer.ManufacturerCode).FirstOrDefault();
+            Manufacturerslist.Remove(selectedManufacturer);
+            Manufacturerslist.Add(manufacturer);
         }
 
         public Manufacturer? FindById(int ManufacturerCode)
         {
-            return Manufacturers.Where(unit => unit.ManufacturerCode == ManufacturerCode).FirstOrDefault();
+            return Manufacturerslist.Where(unit => unit.ManufacturerCode == ManufacturerCode).FirstOrDefault();
 
         }
     }

@@ -36,8 +36,10 @@ namespace GameStore.Service
 
         public void Update(Consoles console)
         {
-            var selectedconsole = consolesList.Where(a => a.DriveType == console.DriveType).FirstOrDefault();
-            selectedconsole = console;
+            var selectedconsole = consolesList.Where(
+                a => a.DriveType == console.DriveType).FirstOrDefault();
+            consolesList.Remove(selectedconsole);
+            consolesList.Add(console);
         }
 
         public Consoles? FindById(string console)

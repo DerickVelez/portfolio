@@ -9,7 +9,7 @@ namespace CarHire.Service
 {
     public class BookingService
     {
-        private List<Booking> Bookings = new List<Booking>
+        private List<Booking> bookinglist = new List<Booking>
         {
             new Booking
             {
@@ -24,28 +24,30 @@ namespace CarHire.Service
 
         public List<Booking> GetBookings()
         {
-            return Bookings;
+            return bookinglist;
         }
 
         public void Add(Booking booking)
         {
-            Bookings.Add(booking);
+            bookinglist.Add(booking);
         }
 
         public void Delete(Booking booking)
         {
-            Bookings.Remove(booking);
+            bookinglist.Remove(booking);
         }
 
         public void Update(Booking booking)
         {
-            var selectedBooking = Bookings.Where(unit => unit.BookingID == booking.BookingID).FirstOrDefault();
-            selectedBooking = booking;
+            var selectedBooking = bookinglist.Where(
+                a => a.BookingID == booking.BookingID).FirstOrDefault();
+            bookinglist.Remove(selectedBooking);
+            bookinglist.Add(booking);
         }
 
         public Booking? FindById(int bookingId)
         {
-            return Bookings.Where(unit => unit.BookingID == bookingId).FirstOrDefault();
+            return bookinglist.Where(unit => unit.BookingID == bookingId).FirstOrDefault();
         }
     }
 }

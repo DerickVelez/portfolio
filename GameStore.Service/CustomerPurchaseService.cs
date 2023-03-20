@@ -37,7 +37,10 @@ namespace GameStore.Service
 
         public void Update(CustomerPurchase customerpurchase)
         {
-            var selectedCustomerPurchase = customerpurchaseList.Where(a => a.PurchaseID == customerpurchase.PurchaseID).FirstOrDefault();
+            var selectedCustomerPurchase = customerpurchaseList.Where(
+                a => a.PurchaseID == customerpurchase.PurchaseID).FirstOrDefault();
+            customerpurchaseList.Remove(selectedCustomerPurchase);
+            customerpurchaseList.Add(customerpurchase);
         }
 
         public CustomerPurchase? FindById(int purchaseId)

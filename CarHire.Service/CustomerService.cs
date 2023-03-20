@@ -9,7 +9,7 @@ namespace CarHire.Service
 {
     public class CustomerService
     {
-        private List<Customer> Customers = new List<Customer>
+        private List<Customer> Customerslist = new List<Customer>
         {
             new Customer
             {
@@ -31,28 +31,30 @@ namespace CarHire.Service
 
         public List<Customer> GetCustomers()
         {
-            return Customers;
+            return Customerslist;
         }
 
         public void Add(Customer customer)
         {
-            Customers.Add(customer);
+            Customerslist.Add(customer);
         }
         public void Delete(Customer customer)
         {
-            Customers.Remove(customer);
+            Customerslist.Remove(customer);
         }
 
         public void Update(Customer customer)
         {
-            var selectedCustomer = Customers.Where(unit => unit.CustomerID == customer.CustomerID).FirstOrDefault();
-            selectedCustomer = customer;
+            var selectedCustomer = Customerslist.Where(
+                a => a.CustomerID == customer.CustomerID).FirstOrDefault();
+            Customerslist.Remove(selectedCustomer);
+            Customerslist.Add(customer);
         }
 
         public Customer? FindById(int CustomerId)
 
         {
-            return Customers.Where(unit => unit.CustomerID == CustomerId).FirstOrDefault();
+            return Customerslist.Where(unit => unit.CustomerID == CustomerId).FirstOrDefault();
         }
     }
 }

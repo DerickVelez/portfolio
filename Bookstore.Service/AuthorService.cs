@@ -9,7 +9,8 @@ namespace Bookstore.Service
 {
     public class AuthorService
     {
-        private List<Author> authorList = new List<Author>
+        private static
+            List<Author> authorList = new List<Author>
         {
             new Author
             {
@@ -35,15 +36,19 @@ namespace Bookstore.Service
             authorList.Add(author);
         }
 
-        public void Delete(Author author)
+        public List<Author> DeleteAuthor(Author author)
         {
-            authorList.Remove(author);
+            authorList =  authorList.Where(a => a.AuthorID != author.AuthorID).ToList() ;
+            return authorList;
+             
         }
 
         public void Update(Author author)
         {
-            var selectedAuthor = authorList.Where(a => a.AuthorID == author.AuthorID).FirstOrDefault();
-            selectedAuthor = author;
+            var selectedAuthor = authorList.Where(
+                a => a.AuthorID == author.AuthorID).FirstOrDefault();
+            authorList.Remove(selectedAuthor);
+            authorList.Add(author);
         }
         public Author? FindById(int authorId)
         {

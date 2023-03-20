@@ -34,16 +34,19 @@ namespace Bookstore.Service
             customerList.Add(customer);
         }
 
-        public void Delete(Customer customer)
+        public List<Customer> Delete(Customer customer)
         {
-            customerList.Remove(customer);
+            customerList = customerList.Where(a => a.CustomerID != customer.CustomerID).ToList();
+            return customerList;
         }
 
-        public void Update(Customer UpdatedCustomer)
+        public void Update(Customer customer)
         {
             
-                var selectCustomer = customerList.Where(customer => customer.CustomerID == UpdatedCustomer.CustomerID).FirstOrDefault();
-                selectCustomer = UpdatedCustomer;
+                var selectCustomer = customerList.Where(
+                    a => a.CustomerID == customer.CustomerID).FirstOrDefault();
+            customerList.Remove(selectCustomer);
+            customerList.Add(customer);
         }
 
         public Customer? FindById(int customerId)

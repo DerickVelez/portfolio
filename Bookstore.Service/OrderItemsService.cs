@@ -27,20 +27,23 @@ namespace Bookstore.Service
             return orderitemsList;
         }
 
-        public void Add(OrderItems orderitems)
+        public void Add(OrderItems orderitem)
         {
-            orderitemsList.Add(orderitems);
+            orderitemsList.Add(orderitem);
         }
 
-        public void Delete(OrderItems orderitems)
+        public List<OrderItems> Delete(OrderItems orderitem)
         {
-            orderitemsList.Remove(orderitems);
+            orderitemsList = orderitemsList.Where(a => a.ItemNumber == orderitem.ItemNumber).ToList();
+            return orderitemsList;
         }
 
-        public void Update(OrderItems orderitems)
+        public void Update(OrderItems orderitem)
         {
-            var selectedOrderItems = orderitemsList.Where(a => a.ItemNumber == orderitems.ItemNumber).FirstOrDefault();
-            selectedOrderItems = orderitems;
+            var selectedOrderItems = orderitemsList.Where(
+                a => a.ItemNumber == orderitem.ItemNumber).FirstOrDefault();
+            orderitemsList.Remove(selectedOrderItems);
+            orderitemsList.Add(orderitem);
         }
 
         public OrderItems? FindById(int itemnumber)

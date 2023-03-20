@@ -23,19 +23,23 @@ namespace GameStore.Service
             return productTypesList;
         }
 
-        public void Add(ProductTypes productstypes)
+        public void Add(ProductTypes productstype
+            )
         {
-            productTypesList.Add(productstypes);
+            productTypesList.Add(productstype);
         }
 
-        public void Delete(ProductTypes productstypes)
+        public void Delete(ProductTypes productstype)
         {
-            productTypesList.Remove(productstypes);
+            productTypesList.Remove(productstype);
         }
 
-        public void Update(ProductTypes productstypes)
+        public void Update(ProductTypes productstype)
         {
-            var selectedCustomerPurchase = productTypesList.Where(a => a.ProductTyopeCode == productstypes.ProductTyopeCode).FirstOrDefault();
+            var selectedCustomerPurchase = productTypesList.Where(
+                a => a.ProductTyopeCode == productstype.ProductTyopeCode).FirstOrDefault();
+            productTypesList.Remove(selectedCustomerPurchase);
+            productTypesList.Add(productstype);
         }
 
         public ProductTypes? FindById(int productcode)

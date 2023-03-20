@@ -28,20 +28,23 @@ namespace Bookstore.Service
             return contactList;
         }
 
-        public void Add(Contacts contacts)
+        public void Add(Contacts contact)
         {
-            contactList.Add(contacts);
+            contactList.Add(contact);
         }
 
-        public void Delete(Contacts contacts)
+        public List<Contacts>  Delete(Contacts contact)
         {
-            contactList.Remove(contacts);
+            contactList = contactList.Where(a => a.CondtactID != contact.CondtactID).ToList();
+            return contactList;
         }
 
-        public void Update(Contacts contacts)
+        public void Update(Contacts contact)
         {
-            var selectedcontacs = contactList.Where(a => a.CondtactID == contacts.CondtactID).FirstOrDefault();
-            selectedcontacs = contacts;
+            var selectedcontacs = contactList.Where(
+                a => a.CondtactID == contact.CondtactID).FirstOrDefault();
+            contactList.Remove(selectedcontacs);
+            contactList.Add(contact);
         }
 
         public Contacts? FindById(int contactID)

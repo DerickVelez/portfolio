@@ -24,10 +24,12 @@ namespace GamingStoreWebAPI.Controllers
             return accessories;
         }
         [HttpPut]
+
         public Accessories Update(Accessories accessories)
         {
             _accessoriesService.Update(accessories);
             return accessories;
         }
+      
     }
 }

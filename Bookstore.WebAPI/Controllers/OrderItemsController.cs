@@ -1,6 +1,5 @@
 ﻿using Bookstore.Data.Entitites;
 using Bookstore.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bookstore.WebAPI.Controllers
@@ -34,8 +33,13 @@ namespace Bookstore.WebAPI.Controllers
             return orderitems;
         }
 
-
-
+        [HttpDelete]
+            
+            public OrderItems Delete(OrderItems order)
+        {
+            _OrderItemsService.Delete(order);
+            return order;
+        }
     }
 
 }

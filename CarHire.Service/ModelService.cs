@@ -9,7 +9,7 @@ namespace CarHire.Service
 {
     public class ModelService
     {
-        private List<Model> Models = new List<Model>
+        private List<Model> Modelslist = new List<Model>
         {
             new Model
             {
@@ -23,28 +23,30 @@ namespace CarHire.Service
 
         public List<Model> GetModel()
         {
-            return Models;
+            return Modelslist;
         }
 
         public void Add(Model model)
         {
-            Models.Add(model);
+            Modelslist.Add(model);
         }
 
         public void Delete(Model model)
         {
-            Models.Remove(model);
+            Modelslist.Remove(model);
         }
 
         public void Update(Model model)
         {
-            var selectedModel = Models.Where(unit => unit.ModelCode == model.ModelCode).FirstOrDefault();
-            selectedModel = model;
+            var selectedModel = Modelslist.Where(
+                a => a.ModelCode == model.ModelCode).FirstOrDefault();
+            Modelslist.Remove(selectedModel);
+            Modelslist.Add(model);
         }
 
         public Model? FindById(int modelCode)
         {
-            return Models.Where(unit => unit.ModelCode == modelCode).FirstOrDefault();  
+            return Modelslist.Where(unit => unit.ModelCode == modelCode).FirstOrDefault();  
         }
     }
 

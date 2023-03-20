@@ -9,7 +9,7 @@ namespace CarHire.Service
 {
     public class VehicleService
     {
-        private List<Vehicle> Vehicles = new List<Vehicle>
+        private List<Vehicle> Vehicleslist = new List<Vehicle>
         {
             new Vehicle
             {
@@ -23,28 +23,30 @@ namespace CarHire.Service
 
         public List<Vehicle> GetVehicles()
         {
-            return Vehicles;
+            return Vehicleslist;
         }
 
         public void Add(Vehicle vehicle)
         {
-            Vehicles.Add(vehicle);  
+            Vehicleslist.Add(vehicle);  
         }
 
         public void Delete(Vehicle vehicle)
         {
-            Vehicles.Remove(vehicle);
+            Vehicleslist.Remove(vehicle);
         }
 
         public void Update(Vehicle vehicle)
         {
-            var selectedVehicle = Vehicles.Where(unit => unit.RegNumber == vehicle.RegNumber).FirstOrDefault();
-            selectedVehicle = vehicle;
+            var selectedVehicle = Vehicleslist.Where(
+                a => a.RegNumber == vehicle.RegNumber).FirstOrDefault();
+            Vehicleslist.Remove(selectedVehicle);
+            Vehicleslist.Add(vehicle);
         }
 
         public Vehicle? FindById(int regNumber)
         {
-            return Vehicles.Where(unit =>unit.RegNumber == regNumber).FirstOrDefault();  
+            return Vehicleslist.Where(unit =>unit.RegNumber == regNumber).FirstOrDefault();  
         }
     }
 }

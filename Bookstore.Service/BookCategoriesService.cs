@@ -25,21 +25,23 @@ namespace Bookstore.Service
             return bookcategoriesList;
         }
 
-        public void Add(BookCategories bookcategories)
+        public void Add(BookCategories bookcategory)
         {
-            bookcategoriesList.Add(bookcategories);
+            bookcategoriesList.Add(bookcategory);
         }
 
-        public void Delete(BookCategories bookcategories)
+        public List<BookCategories> Delete(BookCategories bookcategory)
         {
-            bookcategoriesList.Remove(bookcategories);
+            bookcategoriesList = bookcategoriesList.Where(a => a.BookCategoryCode != bookcategory.BookCategoryCode).ToList();
+            return bookcategoriesList;
         }
 
-        public void Update(BookCategories bookcategories)
+        public void Update(BookCategories bookcategory)
         {
-            var selectedBookCategories = bookcategoriesList.Where(a => a.BookCategoryCode == bookcategories.BookCategoryCode).FirstOrDefault();
-            selectedBookCategories = bookcategories;
-                
+            var selectedBookCategories = bookcategoriesList.Where(
+                a => a.BookCategoryCode == bookcategory.BookCategoryCode).FirstOrDefault();
+            bookcategoriesList.Remove(selectedBookCategories);
+            bookcategoriesList.Add(bookcategory);
         }
 
         public BookCategories? FindById(int bookcategorycode)

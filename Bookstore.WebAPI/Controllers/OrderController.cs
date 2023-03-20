@@ -14,7 +14,7 @@ namespace Bookstore.WebAPI.Controllers
         [HttpGet]
         public List<Order> Get()
         {
-         
+
             return _OrderService.GetOrder();
         }
 
@@ -28,6 +28,13 @@ namespace Bookstore.WebAPI.Controllers
         public Order Update(Order order)
         {
             _OrderService.Update(order);
+            return order;
+        }
+        [HttpDelete]
+
+        public Order Delete(Order order)
+        {
+            _OrderService.Delete(order);
             return order;
         }
     }

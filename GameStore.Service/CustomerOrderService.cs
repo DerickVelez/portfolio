@@ -24,20 +24,22 @@ namespace GameStore.Service
             return customerorderList;
         }
 
-        public void Add(CustomerOrders customerOrders)
+        public void Add(CustomerOrders customerOrder)
         {
-            customerorderList.Add(customerOrders);
+            customerorderList.Add(customerOrder);
         }
 
-        public void Delete(CustomerOrders customerOrders)
+        public void Delete(CustomerOrders customerOrder)
         {
-            customerorderList.Remove(customerOrders);
+            customerorderList.Remove(customerOrder);
         }
 
-        public void Update(CustomerOrders customerOrders)
+        public void Update(CustomerOrders customerOrder)
         {
-            var selectedCustomerOrder = customerorderList.Where(a => a.OrderID == customerOrders.OrderID).FirstOrDefault();
-            selectedCustomerOrder = customerOrders;
+            var selectedCustomerOrder = customerorderList.Where(
+                a => a.OrderID == customerOrder.OrderID).FirstOrDefault();
+            customerorderList.Remove(selectedCustomerOrder);
+            customerorderList.Add(customerOrder);
         }
 
         public CustomerOrders? FindById(int orderID)

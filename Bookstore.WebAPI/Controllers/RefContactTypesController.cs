@@ -34,6 +34,12 @@ namespace Bookstore.WebAPI.Controllers
             return refcontacttypes;
         }
 
+        [HttpDelete]
+        public RefContactTypes Delete(RefContactTypes refContactTypes)
+        {
+            _RefContactTypesService.Delete(refContactTypes);
+            return refContactTypes;  
+        }
         
     }
 }

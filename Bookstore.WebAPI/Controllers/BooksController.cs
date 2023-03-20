@@ -31,5 +31,12 @@ namespace Bookstore.WebAPI.Controllers
             _BooksService.Update(books);
             return books;
         }
+        [HttpDelete]
+
+        public Books Delete(Books books)
+        {
+            _BooksService.Delete(books);
+            return books;
+        }
     }
 }

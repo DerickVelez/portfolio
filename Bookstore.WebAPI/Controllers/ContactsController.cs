@@ -31,6 +31,12 @@ namespace Bookstore.WebAPI.Controllers
             _ContactsService.Update(contacts);
             return contacts;
         }
+        [HttpDelete]
+        public Contacts Delete(Contacts contacts)
+        {
+            _ContactsService.Delete(contacts);
+            return contacts;
+        }
     }
 
 

@@ -26,19 +26,22 @@ namespace GameStore.Service
             return gamesserviceList;
         }
 
-        public void Add(Games games)
+        public void Add(Games game)
         {
-            gamesserviceList.Add(games);
+            gamesserviceList.Add(game);
         }
 
-        public void Delete(Games games)
+        public void Delete(Games game)
         {
-            gamesserviceList.Remove(games);
+            gamesserviceList.Remove(game);
         }
 
-        public void Update(Games games)
+        public void Update(Games game)
         {
-            var selectedCustomerPurchase = gamesserviceList.Where(a => a.GameName == games.GameName).FirstOrDefault();
+            var selectedCustomerPurchase = gamesserviceList.Where(
+               a => a.GameName == game.GameName).FirstOrDefault();
+            gamesserviceList.Remove(selectedCustomerPurchase);
+            gamesserviceList.Add(game);
         }
 
         public Games? FindById(string gamename)

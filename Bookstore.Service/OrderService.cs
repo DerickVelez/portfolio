@@ -27,15 +27,18 @@ namespace Bookstore.Service
             orderList.Add(order);
         }
           
-        public void Delete(Order order)
+        public List<Order> Delete(Order order)
         {
-            orderList.Remove(order);
+           orderList = orderList.Where(a => a.OrderValue != order.OrderValue).ToList();
+            return orderList;
         }
 
         public void Update(Order order)
         {
-            var selectedOrder = orderList.Where(a => a.OrderValue == order.OrderValue).FirstOrDefault();
-            selectedOrder = order;
+            var selectedOrder = orderList.Where(
+                a => a.OrderValue == order.OrderValue).FirstOrDefault();
+            orderList.Remove(selectedOrder);
+            orderList.Add(order);
         }
 
         public Order? FindById(string orderValue)

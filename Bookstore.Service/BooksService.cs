@@ -29,20 +29,23 @@ namespace Bookstore.Service
         }
 
 
-        public void Add(Books books)
+        public void Add(Books book)
         {
-            booksList.Add(books);
+            booksList.Add(book);
         }
 
-        public void Delete(Books books)
+        public List<Books> Delete(Books book)
         {
-            booksList.Remove(books);
+            booksList = booksList.Where(a => a.BookID != book.BookID).ToList();
+            return booksList;
         }
 
-        public void Update(Books books)
+        public void Update(Books book)
         {
-            var selectedBooks = booksList.Where(a => a.BookID == books.BookID).FirstOrDefault();
-            selectedBooks = books;
+            var selectedBooks = booksList.Where(
+                a => a.BookID == book.BookID).FirstOrDefault();
+            booksList.Remove(selectedBooks);
+            booksList.Add(book);
         }
 
         public Books? FindById(int bookId)

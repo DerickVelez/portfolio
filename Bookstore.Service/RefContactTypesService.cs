@@ -24,20 +24,22 @@ namespace Bookstore.Service
             return refcontacttypesList;
         }
 
-        public void Add(RefContactTypes refcontacttypes)
+        public void Add(RefContactTypes refcontacttype)
         {
-            refcontacttypesList.Add(refcontacttypes);
+            refcontacttypesList.Add(refcontacttype);
         }
 
-        public void Delete(RefContactTypes refcontacttypes)
+        public void Delete(RefContactTypes refcontacttype)
         {
-            refcontacttypesList.Remove(refcontacttypes);    
+            refcontacttypesList.Remove(refcontacttype);    
         }
 
-        public void Update(RefContactTypes refcontacttypes)
+        public void Update(RefContactTypes refcontacttype)
         {
-            var selectedrefcontacttypes = refcontacttypesList.Where(a => a.ContactCode == refcontacttypes.ContactCode).FirstOrDefault();
-            selectedrefcontacttypes = refcontacttypes;
+            var selectedrefcontacttypes = refcontacttypesList.Where(
+                a => a.ContactCode == refcontacttype.ContactCode).FirstOrDefault();
+            refcontacttypesList.Remove(selectedrefcontacttypes);
+            refcontacttypesList.Add(refcontacttype);
         }
 
         public RefContactTypes? FindById(int ContactCode)

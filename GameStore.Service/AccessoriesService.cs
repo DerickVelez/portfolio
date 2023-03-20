@@ -4,7 +4,7 @@ namespace GameStore.Service
 {
     public class AccessoriesService
     {
-        private List<Accessories> accessoriesList = new List<Accessories>
+        private static List<Accessories> accessoriesList = new List<Accessories>
         {
             new Accessories
             {
@@ -19,20 +19,22 @@ namespace GameStore.Service
             return accessoriesList;
         }
 
-        public void Add(Accessories accessories)
+        public void Add(Accessories accessory)
         {
-            accessoriesList.Add(accessories);
+            accessoriesList.Add(accessory);
         }
 
-        public void Delete(Accessories accessories)
+        public void Delete(Accessories accessory)
         {
-            accessoriesList.Remove(accessories);
+            accessoriesList.Remove(accessory);
         }
 
-        public void Update(Accessories accessories)
+        public void Update(Accessories accessory)
         {
-            var selectedAccessories = accessoriesList.Where(accessory => accessory.AccessoryName == accessories.AccessoryName).FirstOrDefault();
-            selectedAccessories = accessories;
+            var selectedAccessories = accessoriesList.Where(
+                a => a.AccessoryName == accessory.AccessoryName).FirstOrDefault();
+            accessoriesList.Remove(selectedAccessories);
+            accessoriesList.Add(accessory);
         }
 
         public Accessories? FindById(string accessories)
