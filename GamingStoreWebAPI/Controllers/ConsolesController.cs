@@ -29,5 +29,11 @@ namespace GamingStoreWebAPI.Controllers
             _consolesServiceService.Update(consoles);
             return consoles;
         }
+        [HttpDelete]
+        public Consoles Delete(Consoles consoles)
+        {
+            _consolesServiceService.Delete(consoles);
+            return consoles;
+        }
     }
 }

@@ -30,6 +30,13 @@ namespace GamingStoreWebAPI.Controllers
             _accessoriesService.Update(accessories);
             return accessories;
         }
+        [HttpDelete]
+        public Accessories Delete(Accessories accessories)
+        {
+            _accessoriesService.Delete(accessories);
+            return accessories;
+        }
+
       
     }
 }

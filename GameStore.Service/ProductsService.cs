@@ -30,9 +30,10 @@ namespace GameStore.Service
             productsList.Add(product);
         }
 
-        public void Delete(Products product)
+        public List<Products> Delete(Products product)
         {
-            productsList.Remove(product);
+            productsList = productsList.Where(a => a.ProductID != product.ProductID).ToList();
+            return productsList;
         }
 
         public void Update(Products product)

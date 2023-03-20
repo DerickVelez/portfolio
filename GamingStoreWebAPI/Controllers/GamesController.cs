@@ -9,24 +9,32 @@ namespace GamingStoreWebAPI.Controllers
     [ApiController]
     public class GamesController : ControllerBase
     {
-        private static GamesService _gamessService = new GamesService();
+        private static GamesService _gamesService = new GamesService();
 
         [HttpGet]
         public List<Games> Get()
         {
-            return _gamessService.GetGames();
+            return _gamesService.GetGames();
 
         }
         [HttpPost]
         public Games Add(Games games)
         {
-            _gamessService.Add(games);
+            _gamesService.Add(games);
             return games;
         }
         [HttpPut]
         public Games Update(Games games)
         {
-            _gamessService.Update(games);
+            _gamesService.Update(games);
+            return games;
+        }
+
+        [HttpDelete]
+
+        public Games Delete(Games games)
+        {
+            _gamesService.Delete(games);
             return games;
         }
     }

@@ -24,9 +24,10 @@ namespace GameStore.Service
             accessoriesList.Add(accessory);
         }
 
-        public void Delete(Accessories accessory)
+        public List<Accessories> Delete(Accessories accessory)
         {
-            accessoriesList.Remove(accessory);
+            accessoriesList =  accessoriesList.Where(a => a.AccessoryName != accessory.AccessoryName).ToList();
+            return accessoriesList;
         }
 
         public void Update(Accessories accessory)

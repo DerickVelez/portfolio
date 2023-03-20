@@ -29,9 +29,10 @@ namespace GameStore.Service
             consolesList.Add(consoles);
         }
 
-        public void Delete(Consoles console)
+        public List<Consoles> Delete(Consoles console)
         {
-            consolesList.Remove(console);
+            consolesList = consolesList.Where(a => a.DriveType != console.DriveType).ToList();
+            return consolesList;
         }
 
         public void Update(Consoles console)

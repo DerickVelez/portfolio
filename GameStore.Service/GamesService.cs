@@ -31,9 +31,10 @@ namespace GameStore.Service
             gamesserviceList.Add(game);
         }
 
-        public void Delete(Games game)
+        public List<Games> Delete(Games game)
         {
-            gamesserviceList.Remove(game);
+           gamesserviceList = gamesserviceList.Where(a => a.GameName != game.GameName).ToList();
+            return gamesserviceList;
         }
 
         public void Update(Games game)

@@ -37,9 +37,10 @@ namespace GameStore.Service
             customerList.Add(customer); 
         }
 
-        public void Delete(Customer customer)
+        public List<Customer> Delete(Customer customer)
         {
-            customerList.Remove(customer); 
+            customerList = customerList.Where(a => a.CustomerID != customer.CustomerID).ToList();
+            return customerList;
         }
         public void Update(Customer customer)
         {

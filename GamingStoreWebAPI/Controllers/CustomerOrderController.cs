@@ -29,5 +29,12 @@ namespace GamingStoreWebAPI.Controllers
             _productsService.Update(customerorder);
             return customerorder;
         }
+        [HttpDelete]
+        public CustomerOrders  Delete(CustomerOrders customerorder)
+        {
+            _productsService.Delete(customerorder);
+            return customerorder;
+        }
+
     }
 }

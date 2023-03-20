@@ -30,9 +30,10 @@ namespace GameStore.Service
             customerpurchaseList.Add(customerPurchase);
         }
 
-        public void Delete(CustomerPurchase customerpurchase)
+        public List<CustomerPurchase> Delete(CustomerPurchase customerpurchase)
         {
-            customerpurchaseList.Remove(customerpurchase);
+            customerpurchaseList = customerpurchaseList.Where(a => a.PurchaseID != customerpurchase.PurchaseID).ToList();
+            return customerpurchaseList;
         }
 
         public void Update(CustomerPurchase customerpurchase)

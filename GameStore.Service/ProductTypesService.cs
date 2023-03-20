@@ -29,9 +29,10 @@ namespace GameStore.Service
             productTypesList.Add(productstype);
         }
 
-        public void Delete(ProductTypes productstype)
+        public List<ProductTypes> Delete(ProductTypes productstype)
         {
-            productTypesList.Remove(productstype);
+            productTypesList = productTypesList.Where(a => a.ProductTyopeCode != productstype.ProductTyopeCode).ToList();
+            return productTypesList;
         }
 
         public void Update(ProductTypes productstype)
