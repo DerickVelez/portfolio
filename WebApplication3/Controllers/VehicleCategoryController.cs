@@ -28,5 +28,11 @@ namespace CarHire.WebAPI.Controller
             _vehiclecategoryservice.Update(vehiclecategory);
             return vehiclecategory;
         }
+        [HttpDelete]
+        public VehicleCategory Delete(VehicleCategory vehicleCategory)
+        {
+            _vehiclecategoryservice.Delete(vehicleCategory);
+            return vehicleCategory;
+        }
     }
 }

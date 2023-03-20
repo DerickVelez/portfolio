@@ -28,9 +28,10 @@ namespace CarHire.Service
             Manufacturerslist.Add(manufacturer);
         }
 
-        public void Delete(Manufacturer manufacturer)
+        public List<Manufacturer> Delete(Manufacturer manufacturer)
         {
-            Manufacturerslist.Remove(manufacturer);
+            Manufacturerslist = Manufacturerslist.Where(a => a.ManufacturerCode != manufacturer.ManufacturerCode).ToList();
+            return Manufacturerslist;
         }
 
         public void Update(Manufacturer manufacturer)

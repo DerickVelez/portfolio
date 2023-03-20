@@ -29,9 +29,10 @@ namespace CarHire.Service
             VehicleCategorieslist.Add(vehicleCategory);
         }
 
-        public void Delete(VehicleCategory vehicleCategory)
+        public List<VehicleCategory> Delete(VehicleCategory vehicleCategory)
         {
-            VehicleCategorieslist.Remove(vehicleCategory);
+            VehicleCategorieslist = VehicleCategorieslist.Where(a => a.VehicleCategoryCode != vehicleCategory.VehicleCategoryCode).ToList();
+            return VehicleCategorieslist;
         }
 
         public void Update(VehicleCategory vehicleCategory)

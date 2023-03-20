@@ -31,9 +31,10 @@ namespace CarHire.Service
             Vehicleslist.Add(vehicle);  
         }
 
-        public void Delete(Vehicle vehicle)
+        public List<Vehicle> Delete(Vehicle vehicle)
         {
-            Vehicleslist.Remove(vehicle);
+            Vehicleslist =  Vehicleslist.Where(a => a.ModelCode != vehicle.ModelCode).ToList();
+            return Vehicleslist;
         }
 
         public void Update(Vehicle vehicle)

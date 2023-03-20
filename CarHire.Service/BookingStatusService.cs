@@ -29,9 +29,10 @@ namespace CarHire.Service
             bookingstatuslist.Add(bookingstatus);
         }
 
-        public void Delete(BookingStatus bookingstatus)
+        public List<BookingStatus> Delete(BookingStatus bookingstatus)
         {
-            bookingstatuslist.Remove(bookingstatus);
+            bookingstatuslist = bookingstatuslist.Where(a => a.BookingStatusCode != bookingstatus.BookingStatusCode).ToList();
+            return bookingstatuslist;
         }
 
         public void Update(BookingStatus bookingstatus)

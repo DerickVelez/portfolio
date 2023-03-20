@@ -28,5 +28,12 @@ namespace CarHire.WebAPI.Controller
             _bookingstatusservice.Update(booking);
             return booking;
         }
+        [HttpDelete]
+        public BookingStatus Delete(BookingStatus bookingstatus)
+        {
+            _bookingstatusservice.Delete(bookingstatus);
+            return bookingstatus;
+        }
+
     }
 }

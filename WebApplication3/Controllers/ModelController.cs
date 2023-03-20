@@ -28,5 +28,11 @@ namespace CarHire.WebAPI.Controller
         { _modelService.Update(model);
             return model;
         }
+        [HttpDelete]
+        public Model Delete(Model model)
+        {
+            _modelService.Delete(model);
+            return model;
+        }
     }
 }

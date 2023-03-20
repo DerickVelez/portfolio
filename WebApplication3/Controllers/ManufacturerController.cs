@@ -29,5 +29,11 @@ namespace CarHire.WebAPI.Controller
             _manufacturerService.Update(manufacturer);
             return manufacturer;
         }
+        [HttpDelete]
+        public Manufacturer Delete(Manufacturer manufacturer)
+        {
+            _manufacturerService.Delete(manufacturer);
+            return manufacturer;
+        }
     }   
 }

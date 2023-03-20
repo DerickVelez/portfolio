@@ -31,9 +31,10 @@ namespace CarHire.Service
             Modelslist.Add(model);
         }
 
-        public void Delete(Model model)
+        public List<Model> Delete(Model model)
         {
-            Modelslist.Remove(model);
+            Modelslist = Modelslist.Where(a => a.ModelCode != model.ModelCode).ToList();
+            return Modelslist;
         }
 
         public void Update(Model model)
