@@ -25,6 +25,13 @@ namespace Bookstore.Service
                 AuthorID = 2
             }
         };
+        //function fot no duplicates
+        public bool IsAlreadyRegistered(string firstName,string lastName)
+        {
+            var author = authorList.Where(
+                x => x.FirstName == firstName && x.LastName == lastName).FirstOrDefault();
+           return author != null;
+        }
 
         public List<Author> GetAuthors()
         {

@@ -12,15 +12,22 @@ namespace Bookstore.WebAPI.Controllers
         private static AuthorService _AuthorService = new AuthorService();
 
         [HttpGet]
-        public List<Author> Get()
+        public List<Author> Get() 
         {
-            
-            return _AuthorService.GetAuthors();
+           return _AuthorService.GetAuthors();
         }
 
+            
+
         [HttpPost]
-        public Author Add(Author author)
+        public ActionResult<Author> Add(Author author)
         {
+            bool alreadyExist = _AuthorService.IsAlreadyRegistered(author.FirstName, author.LastName);
+            if (alreadyExist)
+            {
+                return BadRequest("User Already Exist");
+            }    
+            else
             _AuthorService.Add(author);
             return author;
         }
@@ -38,6 +45,6 @@ namespace Bookstore.WebAPI.Controllers
             _AuthorService.DeleteAuthor(author);
             return author;
         }
-
+        
     }
 }

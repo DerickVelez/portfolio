@@ -18,10 +18,16 @@ namespace Bookstore.WebAPI.Controllers
             return _BookCategoriesService.GetBookCategories();
         }
         [HttpPost]
+
         public BookCategories Add(BookCategories bookCategories)
         {
-            _BookCategoriesService.Add(bookCategories);
-            return bookCategories;
+            bool alreadyExist = _BookCategoriesService.IsAlreadyExist(bookCategories.BookCategoryCode, bookCategories.BookCategoryDescription);
+            if (!alreadyExist)
+            {  _BookCategoriesService.Add(bookCategories);
+                return bookCategories;
+            }
+            else 
+                return null;
         }
         [HttpPut]
         public BookCategories Update(BookCategories bookCategories)

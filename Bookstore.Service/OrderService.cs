@@ -17,6 +17,12 @@ namespace Bookstore.Service
                 OrderValue = "burger"
             }
         };
+
+        public bool IsAlreadyExist(string orderValue)
+        {
+            var order = orderList.Where(a => a.OrderValue == orderValue).FirstOrDefault();
+            return order != null;
+        }
         public List<Order> GetOrder()
         {
             return orderList;

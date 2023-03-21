@@ -18,16 +18,21 @@ namespace Bookstore.Service
                 BookTitle = "bokbok",
                 PublicationDate = new DateTime(2022, 10, 2),
                 BookComment = "no comment",
+                AuthorID = 1,
 
             }
 
         };
+        public bool IsAlreadyExist(int bookID, int authorID)
+        {
+            var alreadyexist = booksList.Where(a => a.BookID == bookID && a.AuthorID == authorID).FirstOrDefault();
+            return alreadyexist != null;
+        }
 
         public List<Books> GetBooks()
         {
             return booksList; 
         }
-
 
         public void Add(Books book)
         {

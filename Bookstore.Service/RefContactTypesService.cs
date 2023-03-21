@@ -19,6 +19,13 @@ namespace Bookstore.Service
             }
         };
 
+        public bool IsAlreadyRegistered(int contactCode)
+        {
+            var refcontact = refcontacttypesList.Where(a => a.ContactCode == contactCode).FirstOrDefault();
+            return refcontact != null;
+
+
+        }
         public List<RefContactTypes> GetRefContactTypes()
         {
             return refcontacttypesList;

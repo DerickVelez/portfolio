@@ -23,6 +23,9 @@ namespace Bookstore.WebAPI.Controllers
 
         public RefContactTypes Add(RefContactTypes refcontacttypes)
         {
+            bool alreadyExist = _RefContactTypesService.IsAlreadyRegistered(refcontacttypes.ContactCode);
+            if (alreadyExist)
+                return null;
             _RefContactTypesService.Add(refcontacttypes);
             return refcontacttypes;
         }

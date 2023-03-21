@@ -22,6 +22,12 @@ namespace Bookstore.Service
 
         };
 
+        public bool IsAlreadyExist(int itemNumber)
+        {
+            var orderItems = orderitemsList.Where(a => a.ItemNumber == itemNumber).FirstOrDefault();
+            return orderItems != null;
+        }
+
         public List<OrderItems> GetOrderItems()
         {
             return orderitemsList;

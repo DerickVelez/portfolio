@@ -18,8 +18,12 @@ namespace Bookstore.Service
 
             }
         };
-
-
+       
+        public bool IsAlreadyExist(int bookCategoryCode,string bookCategoryDescription)
+        {
+            var bookCategotyCode = bookcategoriesList.Where(c => c.BookCategoryCode == bookCategoryCode && c.BookCategoryDescription == bookCategoryDescription).FirstOrDefault();
+            return bookCategotyCode != null;
+        }
         public List<BookCategories> GetBookCategories()
         {
             return bookcategoriesList;

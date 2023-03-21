@@ -22,9 +22,14 @@ namespace Bookstore.WebAPI.Controllers
 
         public Books Add(Books books)
         {
+            bool alreadyExist = _BooksService.IsAlreadyExist(books.BookID, books.AuthorID);
+            if (alreadyExist)
+                return null;
+            else
             _BooksService.Add(books);
             return books;  
         }
+
         [HttpPut]
         public Books Update(Books books)
         {

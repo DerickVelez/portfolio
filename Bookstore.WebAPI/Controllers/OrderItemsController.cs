@@ -21,6 +21,9 @@ namespace Bookstore.WebAPI.Controllers
 
         public OrderItems Add(OrderItems orderitems)
         {
+            bool alreadyexist = _OrderItemsService.IsAlreadyExist(orderitems.ItemNumber);
+            if (alreadyexist)
+                return null;
             _OrderItemsService.Add(orderitems);
             return orderitems;
         }

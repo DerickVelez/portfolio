@@ -22,7 +22,11 @@ namespace Bookstore.Service
             },
 
         };
-
+        public bool IsAlreadyExist(int customerID)
+        {
+            var customer = customerList.Where(a => a.CustomerID == customerID).FirstOrDefault();
+            return customer != null;
+        }
 
         public List<Customer> GetCustomer()
         {

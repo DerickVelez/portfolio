@@ -14,21 +14,24 @@ namespace Bookstore.WebAPI.Controllers
         [HttpGet]
         public List<Contacts> Get()
         {
-            
             return _ContactsService.GetContacts();
         }
 
         [HttpPost]
         public Contacts Add(Contacts contacts)
         {
-          
+            var alreadyexist = _ContactsService.IsAlreadyExist(contacts.CondtactID);
+            if (alreadyexist)
+                return null;
+
             _ContactsService.Add(contacts);
             return contacts;
         }
+
         [HttpPut]
         public Contacts Update(Contacts contacts)
         {
-            _ContactsService.Update(contacts);
+          _ContactsService.Update(contacts);
             return contacts;
         }
         [HttpDelete]

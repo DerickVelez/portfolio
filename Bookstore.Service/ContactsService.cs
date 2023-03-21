@@ -22,7 +22,15 @@ namespace Bookstore.Service
 
             }
         };
+        //function fot no duplicates
+        public bool IsAlreadyExist(int contactID)
+        {
+            var alreadyexist = contactList.Where(a => a.CondtactID == contactID).FirstOrDefault();
+            return alreadyexist != null;
+        }
+        
 
+        
         public List<Contacts> GetContacts()
         {
             return contactList;
@@ -35,7 +43,9 @@ namespace Bookstore.Service
 
         public List<Contacts>  Delete(Contacts contact)
         {
-            contactList = contactList.Where(a => a.CondtactID != contact.CondtactID).ToList();
+  var selectedcontacs = contactList.Where(
+                a => a.CondtactID == contact.CondtactID).FirstOrDefault();
+            contactList.Remove(selectedcontacs);
             return contactList;
         }
 

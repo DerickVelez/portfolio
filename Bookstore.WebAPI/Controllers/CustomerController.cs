@@ -21,6 +21,9 @@ namespace Bookstore.WebAPI.Controllers
 
         public Customer Add(Customer customer)
         {
+            bool alreadyExist = _CustomerService.IsAlreadyExist(customer.CustomerID);
+            if (alreadyExist)
+                return null;
             _CustomerService.Add(customer);
             return customer;
         }
