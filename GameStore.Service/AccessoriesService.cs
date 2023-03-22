@@ -13,6 +13,12 @@ namespace GameStore.Service
                 OtherAccessoryDetails = "N/A"
             }
         };
+        public bool IsAlreadyRegistered(string accessoryName)
+        {
+            var accessory = accessoriesList.Where(a =>  a.AccessoryName == accessoryName).FirstOrDefault();
+            return accessory != null;
+        }
+
 
         public List<Accessories> GetAccessories()
         {

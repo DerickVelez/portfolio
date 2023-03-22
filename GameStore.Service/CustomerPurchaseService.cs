@@ -19,6 +19,11 @@ namespace GameStore.Service
 
             }
         };
+         public bool IsAlreadyRegistered(int purchaseID)
+        {
+            var customerpurchase = customerpurchaseList.Where(a => a.PurchaseID == purchaseID).FirstOrDefault();
+            return customerpurchase != null;
+        }
 
         public List<CustomerPurchase> GetCustomerPurchase()
         {

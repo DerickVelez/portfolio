@@ -20,6 +20,10 @@ namespace GamingStoreWebAPI.Controllers
         [HttpPost]
         public Consoles Add(Consoles consoles)
         {
+            bool alreadyexist = _consolesServiceService.IsAlresdyRegistered(consoles.DriveType);
+            if (alreadyexist)
+                return null;
+
             _consolesServiceService.Add(consoles);
             return consoles;
         }

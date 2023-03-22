@@ -27,6 +27,11 @@ namespace GameStore.Service
 
             }
         };
+         public bool IsAlreadyRegistered(int customerCode)
+        {
+            var customer = customerList.Where(x => x.CustomerCode == customerCode).FirstOrDefault();
+            return customer != null;
+        }
         public List<Customer> GetCustomer()
         {
             return customerList;

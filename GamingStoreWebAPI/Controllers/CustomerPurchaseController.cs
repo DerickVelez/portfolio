@@ -20,6 +20,10 @@ namespace GamingStoreWebAPI.Controllers
         [HttpPost]
         public CustomerPurchase Add(CustomerPurchase customerpurchase)
         {
+            bool alreadyexist = _customerpurchaseService.IsAlreadyRegistered(customerpurchase.PurchaseID);
+            if (alreadyexist)
+                return null;
+
             _customerpurchaseService.Add(customerpurchase);
             return customerpurchase;
         }

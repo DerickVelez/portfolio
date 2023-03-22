@@ -20,6 +20,11 @@ namespace GameStore.Service
                 ProductTypeCode = 45,
             }
         };
+        public bool IsAlreadyRegistered(int productID)
+        {
+            var products = productsList.Where(x => x.ProductID == productID).FirstOrDefault();
+            return products != null;
+        }
         public List<Products> GetProducts()
         {
             return productsList;

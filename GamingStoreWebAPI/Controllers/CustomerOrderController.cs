@@ -20,6 +20,10 @@ namespace GamingStoreWebAPI.Controllers
         [HttpPost]
         public CustomerOrders Add(CustomerOrders customerorder)
         {
+            bool alreadyexist = _productsService.IsAlreadyRegistered(customerorder.OrderID);
+            if (alreadyexist)
+                return null;
+
             _productsService.Add(customerorder);
             return customerorder;
         }

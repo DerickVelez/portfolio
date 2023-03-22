@@ -18,6 +18,11 @@ namespace GameStore.Service
                 OtherOrderDetails = "sdjhfk"
             }
         };
+        public bool IsAlreadyRegistered(int orderID)
+        {
+            var customerorder = customerorderList.Where(a => a.OrderID == orderID).FirstOrDefault();
+            return customerorder != null;
+        }
 
         public List<CustomerOrders> GetCustomerOrders()
         {

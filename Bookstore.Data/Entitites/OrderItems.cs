@@ -14,6 +14,6 @@ namespace Bookstore.Data.Entitites
 
         public string ItemComment { get; set; }
 
-        public DateTime OrderDate { get; set; }
+        public DateTime OrderValue { get; set; }
     }
 }

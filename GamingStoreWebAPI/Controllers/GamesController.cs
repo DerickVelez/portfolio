@@ -20,6 +20,10 @@ namespace GamingStoreWebAPI.Controllers
         [HttpPost]
         public Games Add(Games games)
         {
+            bool alreadyexist = _gamesService.IsAlreadyRegistered(games.GameName);
+            if (alreadyexist)
+                return null;
+
             _gamesService.Add(games);
             return games;
         }

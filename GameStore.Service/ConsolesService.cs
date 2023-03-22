@@ -19,6 +19,12 @@ namespace GameStore.Service
             }
         };
 
+        public bool IsAlresdyRegistered(string drivetype)
+        {
+            var condoles = consolesList.Where(c => c.DriveType == drivetype).FirstOrDefault();
+            return condoles != null;
+        }
+
         public List<Consoles> GetConsoles()
         {
             return consolesList;

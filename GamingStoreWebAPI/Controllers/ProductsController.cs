@@ -20,6 +20,10 @@ namespace GamingStoreWebAPI.Controllers
         [HttpPost]
         public Products Add(Products products)
         {
+            bool alreadyexist = _productsService.IsAlreadyRegistered(products.ProductID);
+            if (alreadyexist)
+                return null;
+
             _productsService.Add(products);
             return products;
         }

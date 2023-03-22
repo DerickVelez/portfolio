@@ -21,6 +21,11 @@ namespace GameStore.Service
             }
         };
 
+        public bool IsAlreadyRegistered(string gameName)
+        {
+            var games = gamesserviceList.Where(x => x.GameName == gameName).FirstOrDefault();
+            return games != null;
+        }
         public List<Games> GetGames()
         {
             return gamesserviceList;

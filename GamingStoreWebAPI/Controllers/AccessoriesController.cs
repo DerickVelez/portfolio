@@ -20,6 +20,10 @@ namespace GamingStoreWebAPI.Controllers
         [HttpPost]
         public Accessories Add(Accessories accessories)
         {
+            bool alreadyexist = _accessoriesService.IsAlreadyRegistered(accessories.AccessoryName);
+            if (alreadyexist)
+                return null;
+
             _accessoriesService.Add(accessories);
             return accessories;
         }

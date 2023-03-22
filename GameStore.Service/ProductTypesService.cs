@@ -18,7 +18,12 @@ namespace GameStore.Service
 
             }
         };
-         public List<ProductTypes> GetProductTypes()
+        public bool IsAlreadyRegistered(int productTypeCode)
+        {
+            var producttypes = productTypesList.Where(x => x.ProductTyopeCode == productTypeCode).FirstOrDefault();
+            return producttypes != null;
+        }
+        public List<ProductTypes> GetProductTypes()
         {
             return productTypesList;
         }
