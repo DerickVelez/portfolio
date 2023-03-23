@@ -1,4 +1,4 @@
-﻿using GamingStore.Data;
+﻿using GamingStore.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

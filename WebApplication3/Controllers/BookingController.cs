@@ -20,6 +20,9 @@ namespace CarHire.WebAPI.Controller
         [HttpPost]
         public Booking Add(Booking booking)
         {
+            bool alreadyregistered = _bookingservice.IsAlreadyRegistered(booking.BookingID);
+            if (alreadyregistered)
+                return null;
             _bookingservice.Add(booking);
             return booking;
         }

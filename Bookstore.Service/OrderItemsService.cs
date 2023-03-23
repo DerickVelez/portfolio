@@ -13,11 +13,9 @@ namespace Bookstore.Service
         {
             new OrderItems
             {
-            ItemNumber = 1,
-            ItemAgreedPrice = 54,
-            ItemComment = " no comment",
-            OrderDate = new DateTime(2023, 03, 29)
-
+             ItemNumber = 1,
+             ItemAgreedPrice = 54,
+             ItemComment = " no comment",
             }
 
         };

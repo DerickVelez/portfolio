@@ -15,12 +15,19 @@ namespace CarHire.Service
             {
                 BookingID = 456,
                 BookingStatusCode = "FI",
-                DateFrom = new DateTime(2020, 01, 32),
+                DateFrom = new DateTime(2020, 01, 30),
                 DateTo = new DateTime(2021, 6, 2),
                 ConfirmationLetterSent = " kldsjf",
                 PaymentReceived = " dhdsfh",
             }
         };
+        //functionn for avoiding duplicates in Post method
+
+        public bool IsAlreadyRegistered(int bookingID)
+        {
+            var bookingservice = bookinglist.Where(a => a.BookingID == bookingID).FirstOrDefault();
+            return bookingservice != null;
+        }
 
         public List<Booking> GetBookings()
         {

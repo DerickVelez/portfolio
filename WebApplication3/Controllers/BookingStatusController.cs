@@ -19,6 +19,9 @@ namespace CarHire.WebAPI.Controller
         [HttpPost]
         public BookingStatus Add(BookingStatus bookingStatus)
         {
+            var alreadyexist = _bookingstatusservice.IsAlreadyRegistered(bookingStatus.BookingStatusCode);
+            if (alreadyexist)
+                return null;
             _bookingstatusservice.Add(bookingStatus);
             return bookingStatus;
         }

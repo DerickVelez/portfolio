@@ -20,6 +20,9 @@ namespace CarHire.WebAPI.Controller
         [HttpPost]
         public Vehicle Add(Vehicle vehicle)
         {
+            bool alreadyexist = _vehicleservice.IsAlreadyRegistered(vehicle.RegNumber);
+            if (alreadyexist)
+                return null;
             _vehicleservice.Add(vehicle);
             return vehicle;
         }

@@ -19,6 +19,9 @@ namespace CarHire.WebAPI.Controller
         [HttpPost]
         public VehicleCategory Add(VehicleCategory vehiclecategory)
         {
+            bool alreadyexist = _vehiclecategoryservice.IsAlreadyRegistered(vehiclecategory.VehicleCategoryCode);
+            if (alreadyexist)
+                return null;
             _vehiclecategoryservice.Add(vehiclecategory);
                 return vehiclecategory;
         }

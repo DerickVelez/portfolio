@@ -19,6 +19,9 @@ namespace CarHire.WebAPI.Controller
         [HttpPost]
         public Customer Add(Customer customer)
         {
+            var alreadyregistered = _customerService.IsAlreadyRegistered(customer.CustomerID);
+            if (alreadyregistered)
+                return null;
             _customerService.Add(customer);
             return customer;
         }

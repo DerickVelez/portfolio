@@ -1,4 +1,4 @@
-﻿using GamingStore.Data;
+﻿using GamingStore.Data.Entities;
 
 namespace GameStore.Service
 {

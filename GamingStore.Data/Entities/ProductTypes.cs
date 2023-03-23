@@ -1,4 +1,4 @@
-﻿namespace GamingStore.Data
+﻿namespace GamingStore.Data.Entities
 {
     public class ProductTypes
     {

@@ -1,5 +1,5 @@
 ﻿using GameStore.Service;
-using GamingStore.Data;
+using GamingStore.Data.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

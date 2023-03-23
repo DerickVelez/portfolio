@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GamingStore.Data
+namespace GamingStore.Data.Entities
 {
     public class Accessories
     {

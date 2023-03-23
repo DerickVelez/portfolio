@@ -18,6 +18,13 @@ namespace CarHire.Service
                 ManufacturerName = "Toyota",
             }
             };
+        public bool IsAlreadyRegistered(int manufacturername)
+        {
+            var manufacturer = Manufacturerslist.Where(a => a.ManufacturerCode == manufacturername).FirstOrDefault();
+            return manufacturer != null;
+
+
+        }
         public List<Manufacturer> GetManufacturer()
         {
             return Manufacturerslist;

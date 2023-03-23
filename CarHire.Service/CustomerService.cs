@@ -17,7 +17,7 @@ namespace CarHire.Service
                 CustomerName = "JOBERT",
                 CustomerDetails = "odlh",
                 Country = " Ph",
-                Town = "Calaba",
+                Town = "Calamba",
                 Gender = "Male",
                 AddressLine1 = "djfldks",
                 AddressLine2 = "hfkdjh",
@@ -28,6 +28,11 @@ namespace CarHire.Service
 
             }
         };
+        public bool IsAlreadyRegistered(int customerID)
+        {
+            var customer = Customerslist.Where(a => a.CustomerID == customerID).FirstOrDefault();
+            return customer != null;
+        }
 
         public List<Customer> GetCustomers()
         {

@@ -20,6 +20,9 @@ namespace CarHire.WebAPI.Controller
         [HttpPost]
         public Manufacturer Add(Manufacturer manufacturer)
         {
+            bool alreadyexist = _manufacturerService.IsAlreadyRegistered(manufacturer.ManufacturerCode);
+            if (alreadyexist)
+                return null;
             _manufacturerService.Add(manufacturer);
             return manufacturer;
         }

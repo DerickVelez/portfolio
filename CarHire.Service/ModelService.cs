@@ -20,8 +20,14 @@ namespace CarHire.Service
 
             }
         };
+        public bool IsAlreadyRegistered(int modelCode)
+        {
+            var model = Modelslist.Where(a => a.ModelCode == modelCode).FirstOrDefault();
+            return model != null;
+        }
 
-        public List<Model> GetModel()
+
+            public List<Model> GetModel()
         {
             return Modelslist;
         }

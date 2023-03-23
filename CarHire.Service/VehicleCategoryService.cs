@@ -19,7 +19,13 @@ namespace CarHire.Service
             }
         };
 
-        public List<VehicleCategory> GetVehicleCategory()
+        public bool IsAlreadyRegistered(int vehicleCategoryCode)
+        {
+            var vehicleCategory = VehicleCategorieslist.Where(a => a.VehicleCategoryCode == vehicleCategoryCode).FirstOrDefault();
+            return vehicleCategory != null;
+        }
+
+            public List<VehicleCategory> GetVehicleCategory()
         {
             return VehicleCategorieslist;
         }

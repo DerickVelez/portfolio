@@ -20,6 +20,9 @@ namespace CarHire.WebAPI.Controller
         [HttpPost]
         public Model Add(Model model)
         {
+            bool alreadyexist = _modelService.IsAlreadyRegistered(model.ModelCode);
+            if (alreadyexist)
+                return null;
             _modelService.Add(model);
             return model;
         }
