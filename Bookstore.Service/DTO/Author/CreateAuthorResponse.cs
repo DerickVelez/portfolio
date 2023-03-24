@@ -4,17 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bookstore.Data.Entitites
+namespace Bookstore.Service.DTO.Author
 {
-    public class Author
+    public class CreateAuthorResponse
     {
         public int AuthorID { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
-
-        public DateTime CreatedDate { get; set; }
-
     }
 }

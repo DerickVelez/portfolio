@@ -1,4 +1,5 @@
 ﻿using Bookstore.Data.Entitites;
+using Bookstore.Service.DTO.Author;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -48,14 +49,24 @@ namespace Bookstore.Service
             return authors.ToList();
         }
 
-        public void Add(Author author)
+        public CreateAuthorResponse Add(CreateAuthorRequest request)
         {
-            authorList.Add(author);
+            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+            using var con = new SqlConnection(cs);
+            con.Open();
+
+            //var addauthor = con.Execute("INSERT INTO Authors (FirstName,LastName)  VALUES (@FirstName,@LastName)",author);
+
+            var createdAuthor = con.QuerySingle<CreateAuthorResponse>("INSERT INTO Authors (FirstName,LastName) OUTPUT INSERTED.AuthorID, INSERTED.FirstName, INSERTED.LastName VALUES (@FirstName,@LastName);"
+        ,request);
+
+            return createdAuthor;
         }
 
         public List<Author> DeleteAuthor(Author author)
         {
-            authorList =  authorList.Where(a => a.AuthorID != author.AuthorID).ToList() ;
+                authorList =  authorList.Where(a => a.AuthorID != author.AuthorID).ToList() ;
             return authorList;
              
         }

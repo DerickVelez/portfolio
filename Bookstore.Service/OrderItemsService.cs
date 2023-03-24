@@ -1,6 +1,8 @@
 ﻿using Bookstore.Data.Entitites;
+using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +30,14 @@ namespace Bookstore.Service
 
         public List<OrderItems> GetOrderItems()
         {
-            return orderitemsList;
+            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+            using var con = new SqlConnection(cs);
+            con.Open();
+
+            var orderItems = con.Query<OrderItems>("SELECT * FROM OrderItems");
+
+            return orderItems.ToList();
         }
 
         public void Add(OrderItems orderitem)

@@ -1,6 +1,8 @@
 ﻿using Bookstore.Data.Entitites;
+using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +28,14 @@ namespace Bookstore.Service
         }
         public List<BookCategories> GetBookCategories()
         {
-            return bookcategoriesList;
+            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+            using var con = new SqlConnection(cs);
+            con.Open();
+
+            var bookCategories = con.Query<BookCategories>("SELECT * FROM BookCategories");
+
+            return bookCategories.ToList();
         }
 
         public void Add(BookCategories bookcategory)

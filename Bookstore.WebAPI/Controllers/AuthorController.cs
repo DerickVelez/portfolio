@@ -1,5 +1,6 @@
 ﻿ using Bookstore.Data.Entitites;
 using Bookstore.Service;
+using Bookstore.Service.DTO.Author;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,16 +21,17 @@ namespace Bookstore.WebAPI.Controllers
             
 
         [HttpPost]
-        public ActionResult<Author> Add(Author author)
+        public ActionResult<CreateAuthorResponse> Add(CreateAuthorRequest request)
         {
-            bool alreadyExist = _AuthorService.IsAlreadyRegistered(author.FirstName, author.LastName);
+            bool alreadyExist = _AuthorService.IsAlreadyRegistered(request.FirstName, request.LastName);
             if (alreadyExist)
             {
                 return BadRequest("User Already Exist");
             }    
-            else
-            _AuthorService.Add(author);
-            return author;
+           
+            var response  = _AuthorService.Add(request);
+
+            return response;
         }
 
         [HttpPut]

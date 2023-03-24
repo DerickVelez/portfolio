@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bookstore.Data.Entitites;
+using Dapper;
 
 namespace Bookstore.Service
 {
@@ -25,7 +27,14 @@ namespace Bookstore.Service
         }
         public List<Order> GetOrder()
         {
-            return orderList;
+            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+            using var con = new SqlConnection(cs);
+            con.Open();
+
+            var orders = con.Query<Order>("SELECT * FROM Orders");
+
+            return orders.ToList();
         }
 
         public void Add(Order order)
