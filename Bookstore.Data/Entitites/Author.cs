@@ -14,7 +14,7 @@ namespace Bookstore.Data.Entitites
 
         public string LastName { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+
 
     }
 }

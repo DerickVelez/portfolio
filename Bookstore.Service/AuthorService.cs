@@ -13,15 +13,15 @@ namespace Bookstore.Service
     public class AuthorService
     {
         private static
-            List<Author> authorList = new List<Author>
+            List<Data.Entitites.Author> authorList = new List<Data.Entitites.Author>
         {
-            new Author
+            new Data.Entitites.Author
             {
                 FirstName = "Alvin",
                 LastName = "Almodal",
                 AuthorID = 1
             },
-            new Author
+            new Data.Entitites.Author
             {
                 FirstName = "Diane",
                 LastName = "Almodal",
@@ -36,20 +36,18 @@ namespace Bookstore.Service
            return author != null;
         }
 
-        public List<Author> GetAuthors()
+        public List<Data.Entitites.Author> GetAuthors()
         {
             var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
 
             using var con = new SqlConnection(cs);
             con.Open();
 
-            var authors = con.Query<Author>("SELECT * FROM Authors");
-
-
+            var authors = con.Query<Data.Entitites.Author>("SELECT * FROM Authors");
             return authors.ToList();
         }
 
-        public CreateAuthorResponse Add(CreateAuthorRequest request)
+        public CreateAuthorResponse Add(DTO.Author.Author request)
         {
             var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
 
@@ -64,21 +62,32 @@ namespace Bookstore.Service
             return createdAuthor;
         }
 
-        public List<Author> DeleteAuthor(Author author)
+        public Data.Entitites.Author DeleteAuthor(Data.Entitites.Author author)
         {
-                authorList =  authorList.Where(a => a.AuthorID != author.AuthorID).ToList() ;
-            return authorList;
-             
+            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+            using var con = new SqlConnection(cs);
+            con.Open();
+
+            var createdAuthor = con.Execute("DELETE FROM Authors WHERE Firstname = @FirstName",author);
+
+            var selectedAuthor = authorList.Where(a => a.AuthorID == author.AuthorID).FirstOrDefault();
+            authorList.Remove(selectedAuthor);
+            return author;
+
         }
 
-        public void Update(Author author)
+        public void Update(Data.Entitites.Author author)
         {
             var selectedAuthor = authorList.Where(
                 a => a.AuthorID == author.AuthorID).FirstOrDefault();
             authorList.Remove(selectedAuthor);
             authorList.Add(author);
+
+
+
         }
-        public Author? FindById(int authorId)
+        public Data.Entitites.Author? FindById(int authorId)
         {
             return authorList.Where(a => a.AuthorID == authorId).FirstOrDefault();
         }
