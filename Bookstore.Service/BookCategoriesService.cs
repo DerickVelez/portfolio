@@ -40,6 +40,14 @@ namespace Bookstore.Service
 
         public void Add(BookCategories bookcategory)
         {
+            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+            using var con = new SqlConnection(cs);
+            con.Open();
+
+                        var createdBookCategory = con.QuerySingle<BookCategories>("INSERT INTO BookCategories (BookCategoryDescription) OUTPUT INSERTED.BookCategoryCode, INSERTED.BookCategoryDescription, INSERTED.LastName VALUES (@BookCategoryDescription);"
+        , bookcategory);
+
             bookcategoriesList.Add(bookcategory);
         }
 
