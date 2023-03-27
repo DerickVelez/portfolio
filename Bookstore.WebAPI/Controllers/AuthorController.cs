@@ -1,51 +1,49 @@
-﻿ using Bookstore.Data.Entitites;
+﻿using Bookstore.Data.Entitites;
 using Bookstore.Service;
 using Bookstore.Service.DTO.Author;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bookstore.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class AuthorController : ControllerBase
     {
         private static AuthorService _AuthorService = new AuthorService();
 
         [HttpGet]
-        public List<Data.Entitites.Author> Get() 
+        public List<Author> Get() 
         {
-           return _AuthorService.GetAuthors();
-        }
-
-            
+            return _AuthorService.GetAuthors();
+        }     
 
         [HttpPost]
-        public ActionResult<CreateAuthorResponse> Add(Service.DTO.Author.Author request)
+        public ActionResult<CreateAuthorRequest> Add(CreateAuthorRequest request)
         {
             bool alreadyExist = _AuthorService.IsAlreadyRegistered(request.FirstName, request.LastName);
             if (alreadyExist)
             {
                 return BadRequest("User Already Exist");
             }    
-           
-            var response  = _AuthorService.Add(request);
 
-            return response;
+            return  _AuthorService.Add(request);
+             
         }
 
         [HttpPut]
-        public Data.Entitites.Author Update(Data.Entitites.Author author)
+        public UpdateAuthorRequests Update(UpdateAuthorRequests response)
         {
-            _AuthorService.Update(author);
-            return author;
+            _AuthorService.Update(response);
+            return response;
         }
-        [HttpDelete]
 
-        public Data.Entitites.Author Delete(Data.Entitites.Author author)
+        [HttpDelete]
+        public RemoveAuthorResponse Delete(RemoveAuthorResponse response)
         {
-            _AuthorService.DeleteAuthor(author);
-            return author;
+            _AuthorService.DeleteAuthor(response);
+            return response;
         }
         
     }

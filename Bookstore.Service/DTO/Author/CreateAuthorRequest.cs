@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Service.DTO.Author;
 
-public class Author
+public class CreateAuthorRequest
+
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }

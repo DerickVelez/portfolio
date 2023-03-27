@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Service.DTO.Author
 {
-    public class CreateAuthorResponse
-
+    public class RemoveAuthorRequest
     {
         public int AuthorID { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
     }
+
+
 }

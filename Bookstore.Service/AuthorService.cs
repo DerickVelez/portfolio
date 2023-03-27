@@ -13,7 +13,7 @@ namespace Bookstore.Service
     public class AuthorService
     {
         private static
-            List<Data.Entitites.Author> authorList = new List<Data.Entitites.Author>
+            List<Author> authorList = new List<Author>
         {
             new Data.Entitites.Author
             {
@@ -36,18 +36,18 @@ namespace Bookstore.Service
            return author != null;
         }
 
-        public List<Data.Entitites.Author> GetAuthors()
+        public List<Author> GetAuthors()
         {
             var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
 
             using var con = new SqlConnection(cs);
             con.Open();
 
-            var authors = con.Query<Data.Entitites.Author>("SELECT * FROM Authors");
+            var authors = con.Query<Author>("SELECT * FROM Authors");
             return authors.ToList();
         }
 
-        public CreateAuthorResponse Add(DTO.Author.Author request)
+        public CreateAuthorRequest Add(CreateAuthorRequest request)
         {
             var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
 
@@ -56,38 +56,45 @@ namespace Bookstore.Service
 
             //var addauthor = con.Execute("INSERT INTO Authors (FirstName,LastName)  VALUES (@FirstName,@LastName)",author);
 
-            var createdAuthor = con.QuerySingle<CreateAuthorResponse>("INSERT INTO Authors (FirstName,LastName) OUTPUT INSERTED.AuthorID, INSERTED.FirstName, INSERTED.LastName VALUES (@FirstName,@LastName);"
+            var createdAuthor = con.QuerySingle<CreateAuthorRequest>("INSERT INTO Authors (FirstName,LastName) OUTPUT INSERTED.AuthorID, INSERTED.FirstName, INSERTED.LastName VALUES (@FirstName,@LastName);"
         ,request);
 
             return createdAuthor;
         }
 
-        public Data.Entitites.Author DeleteAuthor(Data.Entitites.Author author)
+        public RemoveAuthorResponse DeleteAuthor(RemoveAuthorResponse request)
         {
             var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
 
             using var con = new SqlConnection(cs);
             con.Open();
 
-            var createdAuthor = con.Execute("DELETE FROM Authors WHERE Firstname = @FirstName",author);
 
-            var selectedAuthor = authorList.Where(a => a.AuthorID == author.AuthorID).FirstOrDefault();
-            authorList.Remove(selectedAuthor);
-            return author;
+            var createdAuthor = con.Execute("DELETE FROM Authors WHERE (AuthorID = @AuthorID)", request);
 
+            //var removedAuthor = con.QuerySingle<RemoveAuthorRequest>("DELETE FROM Authors WHERE AuthorID = @AuthorID", request);  
+
+            return request;
         }
 
-        public void Update(Data.Entitites.Author author)
+        public UpdateAuthorRequests Update(UpdateAuthorRequests request)
         {
-            var selectedAuthor = authorList.Where(
-                a => a.AuthorID == author.AuthorID).FirstOrDefault();
-            authorList.Remove(selectedAuthor);
-            authorList.Add(author);
+            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
 
+            using var con = new SqlConnection(cs);
+            con.Open();
+
+
+            var createdAuthor = con.Execute("UPDATE Authors SET FirstName = @FirstName, LastName = @LastName WHERE (AuthorID = @AuthorID)", request);
+            //var selectedAuthor = authorList.Where(
+            //    a => a.AuthorID == author.AuthorID).FirstOrDefault();
+            //authorList.Remove(selectedAuthor);
+            //authorList.Add(author);
+            return request;
 
 
         }
-        public Data.Entitites.Author? FindById(int authorId)
+        public Author? FindById(int authorId)
         {
             return authorList.Where(a => a.AuthorID == authorId).FirstOrDefault();
         }
