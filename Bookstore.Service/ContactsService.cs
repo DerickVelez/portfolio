@@ -41,8 +41,6 @@ namespace Bookstore.Service
             con.Open();
 
             var contacts = con.Query<Contacts>("SELECT * FROM Contacts");
-
-
             return contacts.ToList();
         }
 

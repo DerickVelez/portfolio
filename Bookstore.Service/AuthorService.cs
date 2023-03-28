@@ -12,16 +12,17 @@ namespace Bookstore.Service
 {
     public class AuthorService
     {
+
         private static
             List<Author> authorList = new List<Author>
         {
-            new Data.Entitites.Author
+            new Author
             {
                 FirstName = "Alvin",
                 LastName = "Almodal",
                 AuthorID = 1
             },
-            new Data.Entitites.Author
+            new Author
             {
                 FirstName = "Diane",
                 LastName = "Almodal",
@@ -54,11 +55,7 @@ namespace Bookstore.Service
             using var con = new SqlConnection(cs);
             con.Open();
 
-            //var addauthor = con.Execute("INSERT INTO Authors (FirstName,LastName)  VALUES (@FirstName,@LastName)",author);
-
-            var createdAuthor = con.QuerySingle<CreateAuthorRequest>("INSERT INTO Authors (FirstName,LastName) OUTPUT INSERTED.AuthorID, INSERTED.FirstName, INSERTED.LastName VALUES (@FirstName,@LastName);"
-        ,request);
-
+            var createdAuthor = con.QuerySingle<CreateAuthorRequest>("INSERT INTO Authors (FirstName,LastName) OUTPUT INSERTED.AuthorID, INSERTED.FirstName, INSERTED.LastName VALUES (@FirstName,@LastName);",request);
             return createdAuthor;
         }
 
@@ -69,11 +66,7 @@ namespace Bookstore.Service
             using var con = new SqlConnection(cs);
             con.Open();
 
-
             var createdAuthor = con.Execute("DELETE FROM Authors WHERE (AuthorID = @AuthorID)", request);
-
-            //var removedAuthor = con.QuerySingle<RemoveAuthorRequest>("DELETE FROM Authors WHERE AuthorID = @AuthorID", request);  
-
             return request;
         }
 
@@ -84,16 +77,10 @@ namespace Bookstore.Service
             using var con = new SqlConnection(cs);
             con.Open();
 
-
             var createdAuthor = con.Execute("UPDATE Authors SET FirstName = @FirstName, LastName = @LastName WHERE (AuthorID = @AuthorID)", request);
-            //var selectedAuthor = authorList.Where(
-            //    a => a.AuthorID == author.AuthorID).FirstOrDefault();
-            //authorList.Remove(selectedAuthor);
-            //authorList.Add(author);
             return request;
-
-
         }
+
         public Author? FindById(int authorId)
         {
             return authorList.Where(a => a.AuthorID == authorId).FirstOrDefault();

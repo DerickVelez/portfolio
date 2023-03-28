@@ -9,9 +9,9 @@ namespace Bookstore.Service.DTO.Author
     public class RemoveAuthorResponse
 
     {
-        
-        public int FirstName { get; set; }
-        public string LastName { get; set; }
+       
+        public int AuthorID { get; set; }
+     
     }
 
 }
