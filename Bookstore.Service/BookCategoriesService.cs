@@ -45,24 +45,30 @@ namespace Bookstore.Service
             using var con = new SqlConnection(cs);
             con.Open();
 
-                        var createdBookCategory = con.QuerySingle<BookCategories>("INSERT INTO BookCategories (BookCategoryDescription) OUTPUT INSERTED.BookCategoryCode, INSERTED.BookCategoryDescription, INSERTED.LastName VALUES (@BookCategoryDescription);"
-        , bookcategory);
-
+            var createdBookCategory = con.QuerySingle<BookCategories>("INSERT INTO BookCategories (BookCategoryDescription) OUTPUT INSERTED.BookCategoryCode, INSERTED.BookCategoryDescription VALUES (@BookCategoryDescription);",bookcategory);
             bookcategoriesList.Add(bookcategory);
         }
 
-        public List<BookCategories> Delete(BookCategories bookcategory)
+        public BookCategories Delete(BookCategories bookcategory)
         {
-            bookcategoriesList = bookcategoriesList.Where(a => a.BookCategoryCode != bookcategory.BookCategoryCode).ToList();
-            return bookcategoriesList;
+            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+            using var con = new SqlConnection(cs);
+            con.Open();
+
+            var createdAuthor = con.Execute("DELETE FROM BookCategories WHERE (BookCategoryCode = @BookCategoryCode)",bookcategory);
+            return bookcategory;
         }
 
-        public void Update(BookCategories bookcategory)
+        public BookCategories Update(BookCategories bookcategory)
         {
-            var selectedBookCategories = bookcategoriesList.Where(
-                a => a.BookCategoryCode == bookcategory.BookCategoryCode).FirstOrDefault();
-            bookcategoriesList.Remove(selectedBookCategories);
-            bookcategoriesList.Add(bookcategory);
+            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+            using var con = new SqlConnection(cs);
+            con.Open();
+
+            var createdAuthor = con.Execute("UPDATE BookCategories SET BookCategoryDescription = @BookCategoryDescription WHERE (BookCategoryCode = @BookCategoryCode)", bookcategory);
+            return bookcategory; 
         }
 
         public BookCategories? FindById(int bookcategorycode)
