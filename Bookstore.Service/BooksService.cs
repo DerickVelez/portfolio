@@ -44,23 +44,34 @@ namespace Bookstore.Service
             return books.ToList(); 
         }
 
-        public void Add(Books book)
+        public void Add(Books books)
         {
-            booksList.Add(book);
+           booksList.Add(books);
+
         }
 
-        public List<Books> Delete(Books book)
+        public Books Delete(Books book)
         {
-            booksList = booksList.Where(a => a.BookID != book.BookID).ToList();
-            return booksList;
+            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+            using var con = new SqlConnection(cs);
+            con.Open();
+
+            var createdAuthor = con.Execute("DELETE FROM Books WHERE (BookID = @BookID)", book);
+            return book;
+
         }
 
-        public void Update(Books book)
+        public Books Update(Books book)
         {
-            var selectedBooks = booksList.Where(
-                a => a.BookID == book.BookID).FirstOrDefault();
-            booksList.Remove(selectedBooks);
-            booksList.Add(book);
+            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+            using var con = new SqlConnection(cs);
+            con.Open();
+
+            var createdAuthor = con.Execute("UPDATE Books SET ISBN = @ISBN, BookTitle = @BookTitle, PublicationDate = @PublicationDate WHERE (BookID = @BookID)", book);
+            return book;
+
         }
 
         public Books? FindById(int bookId)
