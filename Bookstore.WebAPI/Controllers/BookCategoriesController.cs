@@ -1,5 +1,6 @@
 ﻿using Bookstore.Data.Entitites;
 using Bookstore.Service;
+using Bookstore.Service.DTO.BookCategories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ namespace Bookstore.WebAPI.Controllers
 
         public BookCategories Add(BookCategories bookCategories)
         {
-            bool alreadyExist = _BookCategoriesService.IsAlreadyExist(bookCategories.BookCategoryCode, bookCategories.BookCategoryDescription);
+            bool alreadyExist = _BookCategoriesService.IsAlreadyExist(bookCategories.BookCategoryCode,bookCategories.BookCategoryDescription);
             if (!alreadyExist)
             {  _BookCategoriesService.Add(bookCategories);
                 return bookCategories;
@@ -29,14 +30,15 @@ namespace Bookstore.WebAPI.Controllers
             else 
                 return null;
         }
+
         [HttpPut]
         public BookCategories Update(BookCategories bookCategories)
         {
             _BookCategoriesService.Update(bookCategories);
             return bookCategories;
         }
+
         [HttpDelete]
-        
         public BookCategories Delete(BookCategories bookCategories)
         {
             _BookCategoriesService.Delete(bookCategories);

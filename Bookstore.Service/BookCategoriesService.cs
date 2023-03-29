@@ -13,12 +13,11 @@ namespace Bookstore.Service
     {
         private List<BookCategories> bookcategoriesList = new List<BookCategories>
         {
-            new BookCategories
-            {
-                BookCategoryCode = 1,
-                BookCategoryDescription = "Horror",
-
-            }
+            //new BookCategories
+            //{
+            //    BookCategoryCode = 1,
+            //    BookCategoryDescription = "Horror",
+            //}
         };
        
         public bool IsAlreadyExist(int bookCategoryCode,string bookCategoryDescription)
