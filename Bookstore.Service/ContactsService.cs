@@ -44,9 +44,16 @@ namespace Bookstore.Service
             return contacts.ToList();
         }
 
-        public void Add(Contacts contact)
+        public Contacts Add(Contacts contact)
         {
-            contactList.Add(contact);
+            // TODO: test
+            //var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+            //using var con = new SqlConnection(cs);
+            //con.Open();
+
+            //var createdContacts = con.QuerySingle<Contacts>("INSERT INTO Contacts (ContactFirstName,ContactLastName,ContactWorkPhoneNumber,ContactCellPhoneNumber,ContactOtherDetails) OUTPUT INSERTED.ContactID, INSERTED.FirstName, INSERTED.LastName VALUES (@FirstName,@LastName);", request);
+            return contact;
         }
 
         public List<Contacts>  Delete(Contacts contact)

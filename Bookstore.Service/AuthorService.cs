@@ -8,83 +8,80 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bookstore.Service
+namespace Bookstore.Service;
+
+public class AuthorService
 {
-    public class AuthorService
+
+    private static
+        List<Author> authorList = new List<Author>
     {
-
-        private static
-            List<Author> authorList = new List<Author>
+        new Author
         {
-            new Author
-            {
-                FirstName = "Alvin",
-                LastName = "Almodal",
-                AuthorID = 1
-            },
-            new Author
-            {
-                FirstName = "Diane",
-                LastName = "Almodal",
-                AuthorID = 2
-            }
-        };
-        //function fot no duplicates
-        public bool IsAlreadyRegistered(string firstName,string lastName)
+            FirstName = "Alvin",
+            LastName = "Almodal",
+            AuthorID = 1
+        },
+        new Author
         {
-            var author = authorList.Where(
-                x => x.FirstName == firstName && x.LastName == lastName).FirstOrDefault();
-           return author != null;
+            FirstName = "Diane",
+            LastName = "Almodal",
+            AuthorID = 2
         }
+    };
+    private string connectionString;
 
-        public List<Author> GetAuthors()
-        {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+    public AuthorService(string connectionString)
+    {
+        this.connectionString = connectionString;
+    }
 
-            using var con = new SqlConnection(cs);
-            con.Open();
+    public bool IsAlreadyRegistered(string firstName,string lastName)
+    {
+        var author = authorList.Where(
+            x => x.FirstName == firstName && x.LastName == lastName).FirstOrDefault();
+       return author != null;
+    }
 
-            var authors = con.Query<Author>("SELECT * FROM Authors");
-            return authors.ToList();
-        }
+    public List<Author> GetAuthors()
+    {
+        using var con = new SqlConnection(connectionString);
+        con.Open();
 
-        public CreateAuthorRequest Add(CreateAuthorRequest request)
-        {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
 
-            using var con = new SqlConnection(cs);
-            con.Open();
+        var authors = con.Query<Author>("SELECT * FROM Authors");
+        return authors.ToList();
+    }
 
-            var createdAuthor = con.QuerySingle<CreateAuthorRequest>("INSERT INTO Authors (FirstName,LastName) OUTPUT INSERTED.AuthorID, INSERTED.FirstName, INSERTED.LastName VALUES (@FirstName,@LastName);",request);
-            return createdAuthor;
-        }
+    public CreateAuthorRequest Add(CreateAuthorRequest request)
+    {
+        using var con = new SqlConnection(connectionString);
+        con.Open();
 
-        public RemoveAuthorResponse DeleteAuthor(RemoveAuthorResponse request)
-        {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+        var createdAuthor = con.QuerySingle<CreateAuthorRequest>("INSERT INTO Authors (FirstName,LastName) OUTPUT INSERTED.AuthorID, INSERTED.FirstName, INSERTED.LastName VALUES (@FirstName,@LastName);",request);
+        return createdAuthor;
+    }
 
-            using var con = new SqlConnection(cs);
-            con.Open();
+    public RemoveAuthorResponse DeleteAuthor(RemoveAuthorResponse request)
+    {
+        using var con = new SqlConnection(connectionString);
+        con.Open();
 
-            var createdAuthor = con.Execute("DELETE FROM Authors WHERE (AuthorID = @AuthorID)", request);
-            return request;
-        }
+        var createdAuthor = con.Execute("DELETE FROM Authors WHERE (AuthorID = @AuthorID)", request);
+        return request;
+    }
 
-        public UpdateAuthorRequests Update(UpdateAuthorRequests request)
-        {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+    public UpdateAuthorRequests Update(UpdateAuthorRequests request)
+    {
+        using var con = new SqlConnection(connectionString);
+        con.Open();
 
-            using var con = new SqlConnection(cs);
-            con.Open();
+        var createdAuthor = con.Execute("UPDATE Authors SET FirstName = @FirstName, LastName = @LastName WHERE (AuthorID = @AuthorID)", request);
+        return request;
+    }
 
-            var createdAuthor = con.Execute("UPDATE Authors SET FirstName = @FirstName, LastName = @LastName WHERE (AuthorID = @AuthorID)", request);
-            return request;
-        }
-
-        public Author? FindById(int authorId)
-        {
-            return authorList.Where(a => a.AuthorID == authorId).FirstOrDefault();
-        }
+    public Author? FindById(int authorId)
+    {
+        return authorList.Where(a => a.AuthorID == authorId).FirstOrDefault();
     }
 }
-    
