@@ -11,7 +11,15 @@ namespace Bookstore.WebAPI.Controllers
 
     public class AuthorController : ControllerBase
     {
-        private static AuthorService _AuthorService = new AuthorService();
+        private static AuthorService _AuthorService;
+
+        public AuthorController(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DerickServer");
+            //var connectionString = configuration.GetSection("HuwowConnectionString:DerickServer").Value.ToString();
+            //_AuthorService = new AuthorService("Server=DESKTOP-F3KVDMV\\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;");
+            _AuthorService = new AuthorService(connectionString);
+        }
 
         [HttpGet]
         public List<Author> Get() 
