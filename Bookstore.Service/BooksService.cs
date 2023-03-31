@@ -25,7 +25,7 @@ public class BooksService
         }
 
     };
-    public string ConnnectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+    public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
 
     public bool IsAlreadyExist(int bookID, int authorID)
     {
@@ -36,7 +36,7 @@ public class BooksService
     public List<Books> GetBooks()
     {
     
-        using var con = new SqlConnection(ConnnectionString);
+        using var con = new SqlConnection(connectionString);
         con.Open();
 
         var books = con.Query<Books>("SELECT * FROM Books");
@@ -45,16 +45,20 @@ public class BooksService
         return books.ToList(); 
     }
 
-    public void Add(Books books)
+    public Books Add(Books books)
     {
-       booksList.Add(books);
+        using var con = new SqlConnection(connectionString);
+        con.Open();
+
+        var createdAuthor = con.QuerySingle<Books>("INSERT INTO Books (ISBN,BookTitle,PublicationDate,BookComment) OUTPUT INSERTED.BookID, INSERTED.ISBN, INSERTED.BookTitle,                                                                                                                 INSERTED.PublicationDate, INSERTED.BookComment VALUES (@ISBN,@BookTitle,@PublicationDate,@BookComment);", books);
+        return createdAuthor;
 
     }
 
     public Books Delete(Books book)
     {
        
-        using var con = new SqlConnection(ConnnectionString);
+        using var con = new SqlConnection(connectionString);
         con.Open();
 
         var createdAuthor = con.Execute("DELETE FROM Books WHERE (BookID = @BookID)", book);
@@ -65,7 +69,7 @@ public class BooksService
     public Books Update(Books book)
     {
         
-        using var con = new SqlConnection(ConnnectionString);
+        using var con = new SqlConnection(connectionString);
         con.Open();
 
         var createdAuthor = con.Execute("UPDATE Books SET ISBN = @ISBN, BookTitle = @BookTitle, PublicationDate = @PublicationDate WHERE (BookID = @BookID)", book);
@@ -79,3 +83,4 @@ public class BooksService
     }
 };
 
+ 

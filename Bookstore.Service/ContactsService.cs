@@ -24,10 +24,13 @@ namespace Bookstore.Service
 
             }
         };
-        //function fot no duplicates
-        public bool IsAlreadyExist(int contactID)
+
+        public   string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+
+        //function for no duplicates
+        public bool IsAlreadyExist(int contactID, string contactFirstName, string contactLastName)
         {
-            var alreadyexist = contactList.Where(a => a.CondtactID == contactID).FirstOrDefault();
+            var alreadyexist = contactList.Where(a => a.CondtactID == contactID && a.ContactFirstName == contactFirstName && a.ContactLastName == contactLastName).FirstOrDefault();
             return alreadyexist != null;
         }
         
@@ -35,9 +38,7 @@ namespace Bookstore.Service
         
         public List<Contacts> GetContacts()
         {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
-
-            using var con = new SqlConnection(cs);
+            using var con = new SqlConnection(connectionString);
             con.Open();
 
             var contacts = con.Query<Contacts>("SELECT * FROM Contacts");
@@ -47,29 +48,34 @@ namespace Bookstore.Service
         public Contacts Add(Contacts contact)
         {
             // TODO: test
-            //var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+       
+            using var con = new SqlConnection(connectionString);
+            con.Open();
 
-            //using var con = new SqlConnection(cs);
-            //con.Open();
+            var createdContacts = con.QuerySingle<Contacts>("INSERT INTO Contacts (ContactFirstName,ContactLastName,ContactWorkPhoneNumber,ContactCellPhoneNumber,ContactOtherDetails) OUTPUT INSERTED.ContactID, INSERTED.ContactFirstName, INSERTED.ContactLastName, INSERTED.ContactWorkPhoneNumber, INSERTED.ContactCellPhoneNumber, INSERTED.ContactOtherDetails VALUES (@ContactFirstName,@ContactLastName,@ContactWorkPhoneNumber,@ContactCellPhoneNumber,@ContactOtherDetails);", contact);
+            return createdContacts;
+        }
 
-            //var createdContacts = con.QuerySingle<Contacts>("INSERT INTO Contacts (ContactFirstName,ContactLastName,ContactWorkPhoneNumber,ContactCellPhoneNumber,ContactOtherDetails) OUTPUT INSERTED.ContactID, INSERTED.FirstName, INSERTED.LastName VALUES (@FirstName,@LastName);", request);
+        public Contacts  Delete(Contacts contact)
+        {
+
+            using var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var createdAuthor = con.Execute("DELETE FROM Contacts WHERE (ContactID = @ContactID)", contact);
             return contact;
+
         }
 
-        public List<Contacts>  Delete(Contacts contact)
+        public Contacts Update(Contacts contact)
         {
-  var selectedcontacs = contactList.Where(
-                a => a.CondtactID == contact.CondtactID).FirstOrDefault();
-            contactList.Remove(selectedcontacs);
-            return contactList;
-        }
 
-        public void Update(Contacts contact)
-        {
-            var selectedcontacs = contactList.Where(
-                a => a.CondtactID == contact.CondtactID).FirstOrDefault();
-            contactList.Remove(selectedcontacs);
-            contactList.Add(contact);
+            using var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var createdAuthor = con.Execute("UPDATE Contacts SET ContactFirstName = @ContactFirstName, ContactLastName = @ContactLastName, ContactWorkPhoneNumber = @ContactWorkPhoneNumber, ContactCellPhoneNumber = @ContactCellPhoneNumber, ContactOtherDetails = @ContactOtherDetails WHERE (ContactID = @ContactID);", contact);
+            return contact;
+
         }
 
         public Contacts? FindById(int contactID)

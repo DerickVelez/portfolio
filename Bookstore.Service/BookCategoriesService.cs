@@ -19,7 +19,8 @@ namespace Bookstore.Service
             //    BookCategoryDescription = "Horror",
             //}
         };
-       
+
+        private string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
         public bool IsAlreadyExist(int bookCategoryCode,string bookCategoryDescription)
         {
             var bookCategotyCode = bookcategoriesList.Where(c => c.BookCategoryCode == bookCategoryCode && c.BookCategoryDescription == bookCategoryDescription).FirstOrDefault();
@@ -27,9 +28,7 @@ namespace Bookstore.Service
         }
         public List<BookCategories> GetBookCategories()
         {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
-
-            using var con = new SqlConnection(cs);
+            using var con = new SqlConnection(connectionString);
             con.Open();
 
             var bookCategories = con.Query<BookCategories>("SELECT * FROM BookCategories");
@@ -39,9 +38,7 @@ namespace Bookstore.Service
 
         public void Add(BookCategories bookcategory)
         {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
-
-            using var con = new SqlConnection(cs);
+            using var con = new SqlConnection(connectionString);
             con.Open();
 
             var createdBookCategory = con.QuerySingle<BookCategories>("INSERT INTO BookCategories (BookCategoryDescription) OUTPUT INSERTED.BookCategoryCode, INSERTED.BookCategoryDescription VALUES (@BookCategoryDescription);",bookcategory);
@@ -50,9 +47,7 @@ namespace Bookstore.Service
 
         public BookCategories Delete(BookCategories bookcategory)
         {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
-
-            using var con = new SqlConnection(cs);
+            using var con = new SqlConnection(connectionString);
             con.Open();
 
             var createdAuthor = con.Execute("DELETE FROM BookCategories WHERE (BookCategoryCode = @BookCategoryCode)",bookcategory);
@@ -61,9 +56,7 @@ namespace Bookstore.Service
 
         public BookCategories Update(BookCategories bookcategory)
         {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
-
-            using var con = new SqlConnection(cs);
+            using var con = new SqlConnection(connectionString);
             con.Open();
 
             var createdAuthor = con.Execute("UPDATE BookCategories SET BookCategoryDescription = @BookCategoryDescription WHERE (BookCategoryCode = @BookCategoryCode)", bookcategory);

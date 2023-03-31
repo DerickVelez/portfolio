@@ -19,7 +19,7 @@ namespace Bookstore.Service
                 OrderValue = "burger"
             }
         };
-
+        public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
         public bool IsAlreadyExist(string orderValue)
         {
             var order = orderList.Where(a => a.OrderValue == orderValue).FirstOrDefault();
@@ -27,9 +27,8 @@ namespace Bookstore.Service
         }
         public List<Order> GetOrder()
         {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
 
-            using var con = new SqlConnection(cs);
+            using var con = new SqlConnection(connectionString);
             con.Open();
 
             var orders = con.Query<Order>("SELECT * FROM Orders");
@@ -37,23 +36,32 @@ namespace Bookstore.Service
             return orders.ToList();
         }
 
-        public void Add(Order order)
+        public Order Add(Order order)
         {
-            orderList.Add(order);
-        }
-          
-        public List<Order> Delete(Order order)
-        {
-           orderList = orderList.Where(a => a.OrderValue != order.OrderValue).ToList();
-            return orderList;
+            using var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var createdAuthor = con.QuerySingle<Order>("INSERT INTO Orders (OrderDate) OUTPUT INSERTED.OrderValue, INSERTED.OrderDate VALUES (@OrderDate);", order);
+            return createdAuthor;
         }
 
-        public void Update(Order order)
+        public Order Delete(Order order) 
         {
-            var selectedOrder = orderList.Where(
-                a => a.OrderValue == order.OrderValue).FirstOrDefault();
-            orderList.Remove(selectedOrder);
-            orderList.Add(order);
+            using var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var createdAuthor = con.Execute("DELETE FROM Orders WHERE (OrderValue = @OrderValue)", order);
+            return order;
+
+        }
+
+        public Order Update(Order order)
+        {
+            using var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var createdAuthor = con.Execute("UPDATE Orders SET OrderDate = @OrderDat WHERE (OrderValue = @OrderValue)", order);
+            return order;
         }
 
         public Order? FindById(string orderValue)
