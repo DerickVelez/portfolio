@@ -20,7 +20,7 @@ namespace Bookstore.Service
 
             }
         };
-
+        public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
         public bool IsAlreadyRegistered(int contactCode)
         {
             var refcontact = refcontacttypesList.Where(a => a.ContactCode == contactCode).FirstOrDefault();
@@ -30,9 +30,7 @@ namespace Bookstore.Service
         }
         public List<RefContactTypes> GetRefContactTypes()
         {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
-
-            using var con = new SqlConnection(cs);
+            using var con = new SqlConnection(connectionString);
             con.Open();
 
             var refContactTypes = con.Query<RefContactTypes>("SELECT * FROM RefContactTypes");
@@ -40,22 +38,33 @@ namespace Bookstore.Service
             return refContactTypes.ToList();
         }
 
-        public void Add(RefContactTypes refcontacttype)
+        public RefContactTypes Add(RefContactTypes refcontacttype)
         {
-            refcontacttypesList.Add(refcontacttype);
+            using var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var createdAuthor = con.QuerySingle<RefContactTypes>("INSERT INTO RefContactTypes (ContactDescription) OUTPUT INSERTED.ContactCode VALUES (@ContactDescription);", refcontacttype);
+            return createdAuthor;
+
         }
 
-        public void Delete(RefContactTypes refcontacttype)
+        public RefContactTypes Delete(RefContactTypes refcontacttype)
         {
-            refcontacttypesList.Remove(refcontacttype);    
+            using var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var createdAuthor = con.Execute("DELETE FROM RefContactTypes WHERE (ContactCode = @ContactCode)", refcontacttype);
+            return refcontacttype;
         }
 
-        public void Update(RefContactTypes refcontacttype)
+        public RefContactTypes Update(RefContactTypes refcontacttype)
         {
-            var selectedrefcontacttypes = refcontacttypesList.Where(
-                a => a.ContactCode == refcontacttype.ContactCode).FirstOrDefault();
-            refcontacttypesList.Remove(selectedrefcontacttypes);
-            refcontacttypesList.Add(refcontacttype);
+            using var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var createdAuthor = con.Execute("UPDATE RefContactTypes SET ContactDescription= @ContactDescription WHERE (ContactCode = @ContactCode)", refcontacttype);
+            return refcontacttype;
+
         }
 
         public RefContactTypes? FindById(int ContactCode)

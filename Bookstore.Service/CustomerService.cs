@@ -24,6 +24,7 @@ namespace Bookstore.Service
             },
 
         };
+        public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
         public bool IsAlreadyExist(int customerID)
         {
             var customer = customerList.Where(a => a.CustomerID == customerID).FirstOrDefault();
@@ -32,9 +33,8 @@ namespace Bookstore.Service
 
         public List<Customer> GetCustomer()
         {
-            var cs = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
 
-            using var con = new SqlConnection(cs);
+            using var con = new SqlConnection(connectionString);
             con.Open();
 
             var customers = con.Query<Customer>("SELECT * FROM Customers");
@@ -42,34 +42,38 @@ namespace Bookstore.Service
             return customers.ToList();
         }
 
-        public void Add(Customer customer)
+        public Customer Add(Customer customer)
         {
-            customerList.Add(customer);
+            using var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var createdAuthor = con.QuerySingle<Customer>("INSERT INTO Customers (CustomerCode,CustomerName,CustomerAddress,CustomerPhone, CustomerEmail) OUTPUT INSERTED.CustomerID, INSERTED.CustomerCode, INSERTED.CustomerName, INSERTED.CustomerAddress, INSERTED.CustomerPhone, INSERTED.CustomerEmail VALUES (@CustomerCode,@CustomerName,@CustomerAddress,@CustomerPhone, @CustomerEmail);", customer);
+            return createdAuthor;
         }
 
-        public List<Customer> Delete(Customer customer)
+        public Customer Delete(Customer customer)
         {
-            customerList = customerList.Where(a => a.CustomerID != customer.CustomerID).ToList();
-            return customerList;
+            using var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var createdAuthor = con.Execute("DELETE FROM Customers WHERE (CustomerID = @CustomerID)",customer);
+            return customer;
         }
 
-        public void Update(Customer customer)
+        public Customer Update(Customer customer)
         {
-            
-                var selectCustomer = customerList.Where(
-                    a => a.CustomerID == customer.CustomerID).FirstOrDefault();
-            customerList.Remove(selectCustomer);
-            customerList.Add(customer);
+
+            using var con = new SqlConnection(connectionString);
+            con.Open();
+
+            var createdAuthor = con.Execute("UPDATE Customers SET CustomerName = @CustomerName, CustomerAddress = @CustomerAddress, CustomerPhone = @CustomerPhone, CustomerEmail =@CustomerEmail WHERE (CustomerID = @CustomerID)", customer);
+            return customer;
         }
 
         public Customer? FindById(int customerId)
         {
             return customerList.Where(a => a.CustomerID == customerId).FirstOrDefault();
         }
-
-
     }
-
-
 }
     

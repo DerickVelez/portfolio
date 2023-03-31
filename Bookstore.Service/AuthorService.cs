@@ -48,7 +48,6 @@ public class AuthorService
         using var con = new SqlConnection(connectionString);
         con.Open();
 
-
         var authors = con.Query<Author>("SELECT * FROM Authors");
         return authors.ToList();
     }

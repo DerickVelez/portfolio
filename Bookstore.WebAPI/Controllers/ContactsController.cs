@@ -16,16 +16,17 @@ namespace Bookstore.WebAPI.Controllers
         {
             return _ContactsService.GetContacts();
         }
-
+        // IsAlreadyExist is  not working
         [HttpPost]
-        public Contacts Add(Contacts contacts)
+        public ActionResult<Contacts> Add(Contacts contacts)
         {
-            var alreadyexist = _ContactsService.IsAlreadyExist(contacts.CondtactID);
-            if (alreadyexist)
-                return null;
-
-            _ContactsService.Add(contacts);
-            return contacts;
+            bool alreadyexist = _ContactsService.IsAlreadyExist(contacts.CondtactID, contacts.ContactFirstName,contacts.ContactLastName);
+            if (!alreadyexist)
+            {
+                return _ContactsService.Add(contacts);
+                
+            }
+            return BadRequest("User Already Exist");
         }
 
         [HttpPut]
