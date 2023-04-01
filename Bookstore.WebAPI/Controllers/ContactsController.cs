@@ -16,6 +16,7 @@ namespace Bookstore.WebAPI.Controllers
         {
             return _ContactsService.GetContacts();
         }
+
         // IsAlreadyExist is  not working
         [HttpPost]
         public ActionResult<Contacts> Add(Contacts contacts)
@@ -35,6 +36,7 @@ namespace Bookstore.WebAPI.Controllers
           _ContactsService.Update(contacts);
             return contacts;
         }
+
         [HttpDelete]
         public Contacts Delete(Contacts contacts)
         {
