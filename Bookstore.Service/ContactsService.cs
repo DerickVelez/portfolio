@@ -13,16 +13,16 @@ namespace Bookstore.Service
     {
         private List<Contacts> contactList = new List<Contacts>
         {
-            new Contacts
-            {
-                CondtactID = 454,
-                ContactFirstName = "jan Derick",
-                ContactLastName = "velez",
-                ContactWorkPhoneNumber = 66545611,
-                ContactCellPhoneNumber = 44454,
-                ContactOtherDetails = " sdlkfjsaldj",
+            //new Contacts
+            ////{
+            //    CondtactID = 454,
+            //    ContactFirstName = "jan Derick",
+            //    ContactLastName = "velez",
+            //    ContactWorkPhoneNumber = 66545611,
+            //    ContactCellPhoneNumber = 44454,
+            //    ContactOtherDetails = " sdlkfjsaldj",
 
-            }
+            //}
         };
 
         public   string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
@@ -35,7 +35,6 @@ namespace Bookstore.Service
         }
         
 
-        
         public List<Contacts> GetContacts()
         {
             using var con = new SqlConnection(connectionString);
