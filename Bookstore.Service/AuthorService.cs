@@ -16,18 +16,18 @@ public class AuthorService
     private static
         List<Author> authorList = new List<Author>
     {
-        new Author
-        {
-            FirstName = "Alvin",
-            LastName = "Almodal",
-            AuthorID = 1
-        },
-        new Author
-        {
-            FirstName = "Diane",
-            LastName = "Almodal",
-            AuthorID = 2
-        }
+        //new Author
+        //{
+        //    FirstName = "Alvin",
+        //    LastName = "Almodal",
+        //    AuthorID = 1
+        //},
+        //new Author
+        //{
+        //    FirstName = "Diane",
+        //    LastName = "Almodal",
+        //    AuthorID = 2
+        //}
     };
     private string connectionString;
 

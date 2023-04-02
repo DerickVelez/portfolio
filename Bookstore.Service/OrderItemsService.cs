@@ -13,12 +13,12 @@ public class OrderItemsService
 {
     private List<OrderItems> orderitemsList = new List<OrderItems>
     {
-        new OrderItems
-        {
-         ItemNumber = 1,
-         ItemAgreedPrice = 54,
-         ItemComment = " no comment",
-        }
+        //new OrderItems
+        //{
+        // ItemNumber = 1,
+        // ItemAgreedPrice = 54,
+        // ItemComment = " no comment",
+        //}
 
     };
     public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
