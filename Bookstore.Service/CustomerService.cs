@@ -13,15 +13,15 @@ namespace Bookstore.Service
     {
         private List<Customer> customerList = new List<Customer>()
         {
-            new Customer
-            {
-                CustomerID = 1,
-                CustomerCode = 1,
-                CustomerName = "Alvin Almodal",
-                CustomerAddress = "Binan,Laguna",
-                CustomerPhone = 092346541,
-                CustomerEmail = "sahashdl@gmail.com",
-            },
+            //new Customer
+            //{
+            //    CustomerID = 1,
+            //    CustomerCode = 1,
+            //    CustomerName = "Alvin Almodal",
+            //    CustomerAddress = "Binan,Laguna",
+            //    CustomerPhone = 092346541,
+            //    CustomerEmail = "sahashdl@gmail.com",
+            //},
 
         };
         public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";

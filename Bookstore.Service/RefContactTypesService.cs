@@ -13,12 +13,12 @@ namespace Bookstore.Service
     {
         private List<RefContactTypes> refcontacttypesList = new List<RefContactTypes>
         {
-            new RefContactTypes
-            {
-                ContactCode = 56,
-                ContactDescription = "No Description",
+            //new RefContactTypes
+            //{
+            //    ContactCode = 56,
+            //    ContactDescription = "No Description",
 
-            }
+            //}
         };
         public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
         public bool IsAlreadyRegistered(int contactCode)

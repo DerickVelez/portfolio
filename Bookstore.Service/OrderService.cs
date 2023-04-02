@@ -13,11 +13,11 @@ namespace Bookstore.Service
     {
         public List<Order> orderList = new List<Order>
         {
-            new Order
-            {
-                OrderDate = new DateTime(2023,03,10),
-                OrderValue = "burger"
-            }
+            //new Order
+            //{
+            //    OrderDate = new DateTime(2023,03,10),
+            //    OrderValue = "burger"
+            //}
         };
         public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
         public bool IsAlreadyExist(string orderValue)

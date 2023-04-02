@@ -13,16 +13,16 @@ public class BooksService
 {
     private List<Books> booksList = new List<Books>
     {
-        new Books
-        {
-            BookID = 1,
-            ISBN = 23465,
-            BookTitle = "bokbok",
-            PublicationDate = new DateTime(2022, 10, 2),
-            BookComment = "no comment",
-            AuthorID = 1,
+        //new Books
+        //{
+        //    BookID = 1,
+        //    ISBN = 23465,
+        //    BookTitle = "bokbok",
+        //    PublicationDate = new DateTime(2022, 10, 2),
+        //    BookComment = "no comment",
+        //    AuthorID = 1,
 
-        }
+        //}
 
     };
     public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
