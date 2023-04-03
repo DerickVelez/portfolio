@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Bookstore.Data\Bookstore.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\Contacts\" />
+  </ItemGroup>
+
 </Project>

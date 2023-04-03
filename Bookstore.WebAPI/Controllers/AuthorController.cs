@@ -8,7 +8,7 @@ namespace Bookstore.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+     
     public class AuthorController : ControllerBase
     {
         private static AuthorService _AuthorService;

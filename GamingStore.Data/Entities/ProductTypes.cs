@@ -2,7 +2,7 @@
 {
     public class ProductTypes
     {
-        public int ProductTyopeCode { get; set; }
+        public int ProductTypeCode { get; set; }
 
         public string ProducTypeDescription { get; set; }
     }
