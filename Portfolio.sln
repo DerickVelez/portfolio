@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gaming Store", "Gaming Stor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingStore.Data", "GamingStore.Data\GamingStore.Data.csproj", "{1F89DC16-4C5F-42EB-8176-B0D15F9AEB0A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStore.Service", "GameStore.Service\GameStore.Service.csproj", "{84840AF1-B275-4E0D-B196-32D792673527}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingStore.Service", "GameStore.Service\GamingStore.Service.csproj", "{84840AF1-B275-4E0D-B196-32D792673527}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamingStoreWebAPI", "GamingStoreWebAPI\GamingStoreWebAPI.csproj", "{5A777370-FBA8-4213-9D6D-C69C7692CE2D}"
 EndProject
@@ -29,11 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookStore", "BookStore", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlightSchedules", "FlightSchedules", "{C9E04456-55CD-4D79-8841-06A5E1CA4E1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightSchedules.Data", "FlightSchedules.Data\FlightSchedules.Data.csproj", "{07E9800A-4822-4EF3-900E-C9E968638B08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightSchedules.Data", "FlightSchedules.Data\FlightSchedules.Data.csproj", "{07E9800A-4822-4EF3-900E-C9E968638B08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightSchedules.Service", "FlightSchedules.Service\FlightSchedules.Service.csproj", "{FF3CABD8-B5F2-462A-ABEB-4365D8ABA52F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightSchedules.Service", "FlightSchedules.Service\FlightSchedules.Service.csproj", "{FF3CABD8-B5F2-462A-ABEB-4365D8ABA52F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightScheduleWebAPI", "WebApplication4\FlightScheduleWebAPI.csproj", "{8E1C893F-6565-496D-800D-61EB2BF5BD54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightScheduleWebAPI", "WebApplication4\FlightScheduleWebAPI.csproj", "{8E1C893F-6565-496D-800D-61EB2BF5BD54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

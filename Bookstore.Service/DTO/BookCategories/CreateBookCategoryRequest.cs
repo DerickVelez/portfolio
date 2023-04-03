@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Service.DTO.BookCategories
 {
-    public class AddBookCategoryResponse
+    public class CreateBookCategoryRequest
     {
-        public string BookCategoryDescription { get; set; }
+        public int BookCategoryCode { get; set; }
 
+        public string BookCategoryDescription { get; set; }
     }
 }
