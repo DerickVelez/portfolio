@@ -35,7 +35,8 @@ namespace Bookstore.WebAPI.Controllers
             {
                 return BadRequest("User Already Exist");
             }    
-            return  _AuthorService.Add(request);
+            return  _AuthorService.Add(requ                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                   vest);
         }
 
         [HttpPut]
