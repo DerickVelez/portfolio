@@ -11,7 +11,14 @@ namespace Bookstore.WebAPI.Controllers
     public class BookCategoriesController : ControllerBase
     {
 
-        private static BookCategoriesService _BookCategoriesService { get; set; } = new BookCategoriesService();
+        private static BookCategoriesService _BookCategoriesService;
+
+        public BookCategoriesController (IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DerickServer");
+            _BookCategoriesService = new BookCategoriesService(connectionString);
+
+        }
 
         [HttpGet]
         public List<BookCategories> Get()
