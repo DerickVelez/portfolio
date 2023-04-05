@@ -19,8 +19,12 @@ namespace Bookstore.Service
             //    BookCategoryDescription = "Horror",
             //}
         };
-
-        private string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+        private string connectionString;
+        public BookCategoriesService (string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+        //private string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
         public bool IsAlreadyExist(int bookCategoryCode,string bookCategoryDescription)
         {
             var bookCategotyCode = bookcategoriesList.Where(c => c.BookCategoryCode == bookCategoryCode && c.BookCategoryDescription == bookCategoryDescription).FirstOrDefault();
