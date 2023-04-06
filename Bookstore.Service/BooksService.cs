@@ -25,7 +25,11 @@ public class BooksService
         //}
 
     };
-    public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+    private string connectionString;
+    public BooksService(string connectionString)
+    {
+        this.connectionString = connectionString;
+    }
 
     public bool IsAlreadyExist(int bookID, int authorID)
     {

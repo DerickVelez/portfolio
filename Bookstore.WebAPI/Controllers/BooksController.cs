@@ -9,8 +9,15 @@ namespace Bookstore.WebAPI.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        
-        private static BooksService _BooksService{ get; set; } = new BooksService();
+
+        private static BooksService _BooksService;
+
+        public BooksController(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DerickServer");
+            _BooksService = new BooksService(connectionString);
+
+        }
 
         [HttpGet]
         public List<Books> Get()
