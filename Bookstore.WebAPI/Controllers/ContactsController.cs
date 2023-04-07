@@ -9,7 +9,14 @@ namespace Bookstore.WebAPI.Controllers
     [ApiController]
     public class ContactsController : ControllerBase
     {
-        private static ContactsService _ContactsService { get; set; } = new ContactsService();
+        private static ContactsService _ContactsService;
+        
+        public ContactsController (IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DerickServer");
+            _ContactsService = new ContactsService(connectionString);
+        }
+       
 
         [HttpGet]
         public List<Contacts> Get()
