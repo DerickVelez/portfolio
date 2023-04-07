@@ -25,7 +25,13 @@ namespace Bookstore.Service
             //}
         };
 
-        public   string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+        public string connectionString;
+
+        public ContactsService(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+
 
         //function for no duplicates
         public bool IsAlreadyExist(int contactID, string contactFirstName, string contactLastName)
