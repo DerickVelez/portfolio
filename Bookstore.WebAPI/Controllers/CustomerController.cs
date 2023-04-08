@@ -9,7 +9,15 @@ namespace Bookstore.WebAPI.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private static CustomerService _CustomerService{ get; set; } = new CustomerService();
+        private static CustomerService _CustomerService;
+
+        public CustomerController(IConfiguration configuration)
+        {
+
+            var connectionString = configuration.GetConnectionString("DerickServer");
+           _CustomerService = new CustomerService(connectionString);
+        }
+    
 
         [HttpGet]
         public List<Customer> Get()
