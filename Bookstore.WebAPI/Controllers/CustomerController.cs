@@ -13,12 +13,10 @@ namespace Bookstore.WebAPI.Controllers
 
         public CustomerController(IConfiguration configuration)
         {
-
             var connectionString = configuration.GetConnectionString("DerickServer");
            _CustomerService = new CustomerService(connectionString);
         }
-    
-
+     
         [HttpGet]
         public List<Customer> Get()
         {
