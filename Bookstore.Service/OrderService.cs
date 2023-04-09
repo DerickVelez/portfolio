@@ -19,7 +19,12 @@ namespace Bookstore.Service
             //    OrderValue = "burger"
             //}
         };
-        public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+        public string connectionString;
+
+        public OrderService(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
         public bool IsAlreadyExist(string orderValue)
         {
             var order = orderList.Where(a => a.OrderValue == orderValue).FirstOrDefault();
