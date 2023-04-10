@@ -8,7 +8,13 @@ namespace Bookstore.WebAPI.Controllers
     [ApiController]
     public class OrderItemsController : ControllerBase
     {
-        private static OrderItemsService _OrderItemsService { get; set; } = new OrderItemsService();
+        private static OrderItemsService _OrderItemsService;
+
+        public OrderItemsController(IConfiguration configuration)
+        {
+            var connectionstring = configuration.GetConnectionString("DerickServer");
+            _OrderItemsService = new OrderItemsService(connectionstring);
+        }
 
 
         [HttpGet]
