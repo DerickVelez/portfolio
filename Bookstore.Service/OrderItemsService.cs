@@ -21,8 +21,12 @@ public class OrderItemsService
         //}
 
     };
-    public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+    public string connectionString;
 
+    public OrderItemsService(String connectionString)
+    {
+        this.connectionString = connectionString;
+    }
     public bool IsAlreadyExist(int itemNumber)
     {
         var orderItems = orderitemsList.Where(a => a.ItemNumber == itemNumber).FirstOrDefault();
