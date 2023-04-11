@@ -20,7 +20,12 @@ namespace Bookstore.Service
 
             //}
         };
-        public string connectionString = @"Server=DESKTOP-F3KVDMV\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;";
+        public string connectionString;
+
+        public RefContactTypesService(String connectionString)
+        {
+            this.connectionString = connectionString;   
+        }
         public bool IsAlreadyRegistered(int contactCode)
         {
             var refcontact = refcontacttypesList.Where(a => a.ContactCode == contactCode).FirstOrDefault();
