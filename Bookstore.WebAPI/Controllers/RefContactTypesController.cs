@@ -9,7 +9,13 @@ namespace Bookstore.WebAPI.Controllers
     [ApiController]
     public class RefContactTypesController : ControllerBase
     {
-        private static RefContactTypesService _RefContactTypesService { get; set; } = new RefContactTypesService();
+        private static RefContactTypesService _RefContactTypesService;
+
+        public RefContactTypesController(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DerickServer");
+            _RefContactTypesService = new RefContactTypesService(connectionString);
+        }
 
 
         [HttpGet]

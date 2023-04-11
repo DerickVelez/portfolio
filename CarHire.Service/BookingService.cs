@@ -11,15 +11,15 @@ namespace CarHire.Service
     {
         private List<Booking> bookinglist = new List<Booking>
         {
-            new Booking
-            {
-                BookingID = 456,
-                BookingStatusCode = "FI",
-                DateFrom = new DateTime(2020, 01, 30),
-                DateTo = new DateTime(2021, 6, 2),
-                ConfirmationLetterSent = " kldsjf",
-                PaymentReceived = " dhdsfh",
-            }
+            //new Booking
+            //{
+            //    BookingID = 456,
+            //    BookingStatusCode = "FI",
+            //    DateFrom = new DateTime(2020, 01, 30),
+            //    DateTo = new DateTime(2021, 6, 2),
+            //    ConfirmationLetterSent = " kldsjf",
+            //    PaymentReceived = " dhdsfh",
+            //}
         };
         //functionn for avoiding duplicates in Post method
 
