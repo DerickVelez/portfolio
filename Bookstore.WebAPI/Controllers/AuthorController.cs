@@ -12,7 +12,8 @@ namespace Bookstore.WebAPI.Controllers;
 public class AuthorController : ControllerBase
 {
     private static AuthorService _AuthorService;
-
+    //<summary>  a
+    //Integrate connection string to app setting
     public AuthorController(IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DerickServer");

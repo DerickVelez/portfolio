@@ -13,6 +13,14 @@ namespace GameStore.Service
                 OtherAccessoryDetails = "N/A"
             }
         };
+
+        private string connectionString;
+
+        public AccessoriesService(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+
         public bool IsAlreadyRegistered(string accessoryName)
         {
             var accessory = accessoriesList.Where(a =>  a.AccessoryName == accessoryName).FirstOrDefault();

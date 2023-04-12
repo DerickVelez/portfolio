@@ -26,7 +26,7 @@ namespace Bookstore.Service
         };
 
         public string connectionString;
-
+        // Integrate connection string 
         public ContactsService(string connectionString)
         {
             this.connectionString = connectionString;
