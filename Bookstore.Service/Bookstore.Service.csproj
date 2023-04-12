@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\Contacts\" />
+    <Folder Include="DTO\Customer\" />
   </ItemGroup>
 
 </Project>

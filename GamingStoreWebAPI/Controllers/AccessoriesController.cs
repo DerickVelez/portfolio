@@ -9,7 +9,12 @@ namespace GamingStoreWebAPI.Controllers
     [ApiController]
     public class AccessoriesController : ControllerBase
     {
-        private static AccessoriesService _accessoriesService { get; set; } = new AccessoriesService();
+        private static AccessoriesService _accessoriesService;
+        public AccessoriesController(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DerickServer");
+            _accessoriesService = new AccessoriesService(connectionString);
+        }
 
         [HttpGet]
         public List<Accessories> Get()

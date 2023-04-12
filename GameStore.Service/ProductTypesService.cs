@@ -13,14 +13,14 @@ namespace GameStore.Service
         {
             new ProductTypes
             {
-                ProductTyopeCode = 464,
+                ProductTypeCode = 464,
                 ProducTypeDescription = "dfjkj",
 
             }
         };
         public bool IsAlreadyRegistered(int productTypeCode)
         {
-            var producttypes = productTypesList.Where(x => x.ProductTyopeCode == productTypeCode).FirstOrDefault();
+            var producttypes = productTypesList.Where(x => x.ProductTypeCode == productTypeCode).FirstOrDefault();
             return producttypes != null;
         }
         public List<ProductTypes> GetProductTypes()
@@ -36,21 +36,21 @@ namespace GameStore.Service
 
         public List<ProductTypes> Delete(ProductTypes productstype)
         {
-            productTypesList = productTypesList.Where(a => a.ProductTyopeCode != productstype.ProductTyopeCode).ToList();
+            productTypesList = productTypesList.Where(a => a.ProductTypeCode != productstype.ProductTypeCode).ToList();
             return productTypesList;
         }
 
         public void Update(ProductTypes productstype)
         {
             var selectedCustomerPurchase = productTypesList.Where(
-                a => a.ProductTyopeCode == productstype.ProductTyopeCode).FirstOrDefault();
+                a => a.ProductTypeCode == productstype.ProductTypeCode).FirstOrDefault();
             productTypesList.Remove(selectedCustomerPurchase);
             productTypesList.Add(productstype);
         }
 
         public ProductTypes? FindById(int productcode)
         {
-            return productTypesList.Where(a => a.ProductTyopeCode == productcode).FirstOrDefault();
+            return productTypesList.Where(a => a.ProductTypeCode == productcode).FirstOrDefault();
         }
     }
 }
