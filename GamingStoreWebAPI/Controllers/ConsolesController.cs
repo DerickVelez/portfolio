@@ -9,7 +9,13 @@ namespace GamingStoreWebAPI.Controllers
     [ApiController]
     public class ConsolesController : ControllerBase
     {
-        private static ConsolesService _consolesServiceService { get; set; } = new ConsolesService();
+        private static ConsolesService _consolesServiceService;
+
+        public ConsolesController(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DerickServer");
+            _consolesServiceService = new ConsolesService(connectionString);
+        }
 
         [HttpGet]
         public List<Consoles> Get()
