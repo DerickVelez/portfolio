@@ -18,6 +18,12 @@ namespace GameStore.Service
                 Size = 232,
             }
         };
+         private string connectionString;
+
+        public ConsolesService(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
 
         public bool IsAlresdyRegistered(string drivetype)
         {
