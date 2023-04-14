@@ -9,7 +9,13 @@ namespace GamingStoreWebAPI.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private static CustomerService _customerService { get; set; } = new CustomerService();
+        private static CustomerService _customerService;
+
+        public CustomerController(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DerickServer");
+            _customerService = new CustomerService(connectionString);
+        }
 
         [HttpGet]
         public List<Customer> Get()
