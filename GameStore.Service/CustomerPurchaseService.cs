@@ -19,6 +19,13 @@ namespace GameStore.Service
 
             }
         };
+        private string connectionString;
+
+        public CustomerPurchaseService(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+
          public bool IsAlreadyRegistered(int purchaseID)
         {
             var customerpurchase = customerpurchaseList.Where(a => a.PurchaseID == purchaseID).FirstOrDefault();
