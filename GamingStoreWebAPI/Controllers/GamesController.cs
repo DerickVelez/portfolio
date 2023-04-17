@@ -9,7 +9,13 @@ namespace GamingStoreWebAPI.Controllers
     [ApiController]
     public class GamesController : ControllerBase
     {
-        private static GamesService _gamesService = new GamesService();
+        private static GamesService _gamesService;
+
+        public GamesController(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DerickServer");
+            _gamesService = new GamesService(connectionString);
+        }
 
         [HttpGet]
         public List<Games> Get()
