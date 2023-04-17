@@ -20,6 +20,14 @@ namespace GameStore.Service
 
             }
         };
+        private string connectionString;
+
+        public GamesService(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+
+
 
         public bool IsAlreadyRegistered(string gameName)
         {
