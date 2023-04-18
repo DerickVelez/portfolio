@@ -9,7 +9,13 @@ namespace GamingStoreWebAPI.Controllers
     [ApiController]
     public class ProductTypeController : ControllerBase
     {
-        private static ProductTypesService _producttypeserviceList { get; set; } = new ProductTypesService();
+        private static ProductTypesService _producttypeserviceList;
+
+        public ProductTypeController(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DerickServer");
+            _producttypeserviceList = new ProductTypesService(connectionString);
+        }
 
         [HttpGet]
         public List<ProductTypes> Get()
