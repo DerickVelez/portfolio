@@ -20,6 +20,14 @@ namespace GameStore.Service
                 ProductTypeCode = 45,
             }
         };
+
+        private string connectionString;
+
+        public ProductsService(string connectionString)
+        {
+        this.connectionString = connectionString;
+        }
+
         public bool IsAlreadyRegistered(int productID)
         {
             var products = productsList.Where(x => x.ProductID == productID).FirstOrDefault();
