@@ -18,6 +18,14 @@ namespace GameStore.Service
 
             }
         };
+
+        private string connectionString;
+        
+        public ProductTypesService(string connectionString)
+        {
+            this.connectionString = connectionString;   
+        }
+
         public bool IsAlreadyRegistered(int productTypeCode)
         {
             var producttypes = productTypesList.Where(x => x.ProductTypeCode == productTypeCode).FirstOrDefault();
