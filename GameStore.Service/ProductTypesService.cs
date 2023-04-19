@@ -11,14 +11,9 @@ namespace GameStore.Service
     {
         private List<ProductTypes> productTypesList = new List<ProductTypes>
         {
-            new ProductTypes
-            {
-                ProductTypeCode = 464,
-                ProducTypeDescription = "dfjkj",
-
-            }
+            
         };
-
+        //Deleted built in data
         private string connectionString;
         
         public ProductTypesService(string connectionString)
