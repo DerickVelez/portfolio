@@ -13,16 +13,7 @@ namespace Bookstore.Service
     {
         private List<Contacts> contactList = new List<Contacts>
         {
-            //new Contacts
-            ////{
-            //    CondtactID = 454,
-            //    ContactFirstName = "jan Derick",
-            //    ContactLastName = "velez",
-            //    ContactWorkPhoneNumber = 66545611,
-            //    ContactCellPhoneNumber = 44454,
-            //    ContactOtherDetails = " sdlkfjsaldj",
-
-            //}
+          
         };
 
         public string connectionString;
