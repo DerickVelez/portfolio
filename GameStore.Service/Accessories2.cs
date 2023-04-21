@@ -39,5 +39,9 @@ namespace GameStore.Service
             var updatedaccessory = accessoriesList.Where(a => a.AccessoryName == accessories.AccessoryName).ToList();
         }
 
+        public Accessories? FindById(string accessories)
+        {
+            return accessoriesList.Where(a => a.AccessoryName == accessories).FirstOrDefault();
+        }
     }
 } 
