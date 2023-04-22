@@ -11,14 +11,14 @@ namespace GameStore.Service
     {
         private List<Games> gamesserviceList = new List<Games>
         {
-            new Games
-            {
-                GameName = "Ml",
-                MemoryRequired = 446,
-                OtherGameDetails = "dfg",
-                NumberOfPlayers = 1,
+            //new Games
+            //{
+            //    GameName = "Ml",
+            //    MemoryRequired = 446,
+            //    OtherGameDetails = "dfg",
+            //    NumberOfPlayers = 1,
 
-            }
+            //}
         };
         private string connectionString;
 
