@@ -17,7 +17,8 @@ namespace GamingStoreWebAPI.Controllers
             _gamesService = new GamesService(connectionString);
         }
 
-        [HttpGet]
+        [HttpGet]          
+
         public List<Games> Get()
         {
             return _gamesService.GetGames();
