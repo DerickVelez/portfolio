@@ -11,12 +11,12 @@ namespace GameStore.Service
     {
         private List<Consoles> consolesList = new List<Consoles>
         {
-            new Consoles
-            {
-                DriveType = "abc",
-                OtherConsoleDetails = "color yellow",
-                Size = 232,
-            }
+            //new Consoles
+            //{
+            //    DriveType = "abc",
+            //    OtherConsoleDetails = "color yellow",
+            //    Size = 232,
+            //}
         };
          private string connectionString;
 
