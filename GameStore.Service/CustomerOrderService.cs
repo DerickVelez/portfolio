@@ -11,12 +11,12 @@ namespace GameStore.Service
     {
         private List<CustomerOrders> customerorderList = new List<CustomerOrders>
         {
-            new CustomerOrders
-            {
-                OrderID = 5454,
-                DateOfOrder = new DateTime(2023,05,2),
-                OtherOrderDetails = "sdjhfk"
-            }
+            //new CustomerOrders
+            //{
+            //    OrderID = 5454,
+            //    DateOfOrder = new DateTime(2023,05,2),
+            //    OtherOrderDetails = "sdjhfk"
+            //}
         };
 
         public string connectionString;
