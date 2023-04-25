@@ -11,13 +11,13 @@ namespace GameStore.Service
     {
         private List<CustomerPurchase> customerpurchaseList = new List<CustomerPurchase>
         {
-            new CustomerPurchase
-            {
-                PurchaseID = 484,
-                DateOfPurchase = new DateTime(2022, 5,6),
-                OtherPurchaseDetails = "kdhf",
+            //new CustomerPurchase
+            //{
+            //    PurchaseID = 484,
+            //    DateOfPurchase = new DateTime(2022, 5,6),
+            //    OtherPurchaseDetails = "kdhf",
 
-            }
+            //}
         };
         private string connectionString;
 
