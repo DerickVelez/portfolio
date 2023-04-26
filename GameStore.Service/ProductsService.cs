@@ -11,14 +11,14 @@ namespace GameStore.Service
     {
         private List<Products> productsList = new List<Products>
         {
-            new Products
-            {
-                ProductID = 54,
-                ProductDescription = "dfhd",
-                ProductName = "bengbeng",
-                ProductPrice = 10000,
-                ProductTypeCode = 45,
-            }
+            //new Products
+            //{
+            //    ProductID = 54,
+            //    ProductDescription = "dfhd",
+            //    ProductName = "bengbeng",
+            //    ProductPrice = 10000,
+            //    ProductTypeCode = 45,
+            //}
         };
 
         private string connectionString;
