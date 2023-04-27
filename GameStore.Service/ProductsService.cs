@@ -57,9 +57,9 @@ namespace GameStore.Service
             productsList.Add(product);
         }
 
-        public Products? FindById(int productId)
-        {
-            return productsList.Where(a => a.ProductID == productId).FirstOrDefault();
-        }
+        //public Products? FindById(int productId)
+        //{
+        //    return productsList.Where(a => a.ProductID == productId).FirstOrDefault();
+        //}
     }
 }
