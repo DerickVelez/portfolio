@@ -52,9 +52,9 @@ namespace GameStore.Service
             productTypesList.Add(productstype);
         }
 
-        public ProductTypes? FindById(int productcode)
-        {
-            return productTypesList.Where(a => a.ProductTypeCode == productcode).FirstOrDefault();
-        }
+        //public ProductTypes? FindById(int productcode)
+        //{
+        //    return productTypesList.Where(a => a.ProductTypeCode == productcode).FirstOrDefault();
+        //}
     }
 }
