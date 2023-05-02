@@ -41,16 +41,16 @@ namespace CarHire.Service
 
         public List<Booking> Delete(Booking booking)
         {
-            bookinglist = bookinglist.Where(a => a.BookingID != booking.BookingID).ToList();
+            var selectedBooking = bookinglist.Where(
+          a => a.BookingID == booking.BookingID).FirstOrDefault();
+            bookinglist.Remove(selectedBooking);
             return bookinglist;
         }
 
         public void Update(Booking booking)
         {
-            var selectedBooking = bookinglist.Where(
-                a => a.BookingID == booking.BookingID).FirstOrDefault();
-            bookinglist.Remove(selectedBooking);
-            bookinglist.Add(booking);
+           Delete(booking);
+           bookinglist.Add(booking);
         }
 
         public Booking? FindById(int bookingId)

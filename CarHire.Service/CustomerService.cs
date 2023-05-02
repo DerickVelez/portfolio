@@ -46,15 +46,15 @@ namespace CarHire.Service
         public List<Customer> Delete(Customer customer)
 
         {
-            Customerslist = Customerslist.Where(a => a.CustomerID != customer.CustomerID).ToList();
+            var selectedCustomer = Customerslist.Where(
+               a => a.CustomerID == customer.CustomerID).FirstOrDefault();
+            Customerslist.Remove(selectedCustomer);
             return Customerslist;
         }
 
         public void Update(Customer customer)
         {
-            var selectedCustomer = Customerslist.Where(
-                a => a.CustomerID == customer.CustomerID).FirstOrDefault();
-            Customerslist.Remove(selectedCustomer);
+            Delete(customer);
             Customerslist.Add(customer);
         }
 
