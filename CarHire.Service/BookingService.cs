@@ -22,7 +22,13 @@ namespace CarHire.Service
             //}
         };
         //functionn for avoiding duplicates in Post method
+        public string connectionString;
 
+        public BookingService(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+       
         public bool IsAlreadyRegistered(int bookingID)
         {
             var bookingservice = bookinglist.Where(a => a.BookingID == bookingID).FirstOrDefault();
