@@ -37,15 +37,15 @@ namespace CarHire.Service
 
         public List<Manufacturer> Delete(Manufacturer manufacturer)
         {
-            Manufacturerslist = Manufacturerslist.Where(a => a.ManufacturerCode != manufacturer.ManufacturerCode).ToList();
+            var selectedManufacturer = Manufacturerslist.Where(
+             a => a.ManufacturerCode == manufacturer.ManufacturerCode).FirstOrDefault();
+            Manufacturerslist.Remove(selectedManufacturer); 
             return Manufacturerslist;
         }
 
         public void Update(Manufacturer manufacturer)
         {
-            var selectedManufacturer = Manufacturerslist.Where(
-                a => a.ManufacturerCode == manufacturer.ManufacturerCode).FirstOrDefault();
-            Manufacturerslist.Remove(selectedManufacturer);
+            Delete(manufacturer);
             Manufacturerslist.Add(manufacturer);
         }
 
