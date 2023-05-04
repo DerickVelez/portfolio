@@ -18,6 +18,15 @@ namespace CarHire.Service
 
             }
         };
+
+        public string connectionString;
+
+        public BookingStatusService(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+        
+ 
         public bool IsAlreadyRegistered(int bookingStatusCode)
         {
             var bookingStatus = bookingstatuslist.Where(a => a.BookingStatusCode == bookingStatusCode).FirstOrDefault();
