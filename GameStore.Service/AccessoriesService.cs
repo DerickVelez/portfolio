@@ -40,16 +40,17 @@ namespace GameStore.Service
 
         public List<Accessories> Delete(Accessories accessory)
         {
-            accessoriesList =  accessoriesList.Where(a => a.AccessoryName != accessory.AccessoryName).ToList();
+            var selectedAccessories = accessoriesList.Where(
+         a => a.AccessoryName == accessory.AccessoryName).FirstOrDefault();
+            accessoriesList.Remove(selectedAccessories);
             return accessoriesList;
         }
 
-        public void Update(Accessories accessory)
+        public List<Accessories> Update(Accessories accessory)
         {
-            var selectedAccessories = accessoriesList.Where(
-                a => a.AccessoryName == accessory.AccessoryName).FirstOrDefault();
-            accessoriesList.Remove(selectedAccessories);
+            Delete(accessory);
             accessoriesList.Add(accessory);
+            return accessoriesList;
         }
 
         public Accessories? FindById(string accessories)

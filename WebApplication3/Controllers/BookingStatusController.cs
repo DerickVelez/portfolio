@@ -9,7 +9,13 @@ namespace CarHire.WebAPI.Controller
     [ApiController]
     public class BookingStatusController : ControllerBase
     {
-        private static BookingStatusService _bookingstatusservice { get; set; } = new BookingStatusService();
+        private static BookingStatusService _bookingstatusservice;
+
+        public BookingStatusController(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("ServerConnection");
+            _bookingstatusservice = new BookingStatusService(connectionString);
+        }
 
         [HttpGet]
         public List<BookingStatus> Get()
