@@ -24,7 +24,7 @@ namespace CarHire.Service
         //functionn for avoiding duplicates in Post method
         public string connectionString;
 
-        public BookingService(string connectionString)
+        public  BookingService(string connectionString)
         {
             this.connectionString = connectionString;
         }
