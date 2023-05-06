@@ -43,16 +43,17 @@ namespace GameStore.Service
 
         public List<Consoles> Delete(Consoles console)
         {
-            consolesList = consolesList.Where(a => a.DriveType != console.DriveType).ToList();
+            var selectedconsole = consolesList.Where(
+           a => a.DriveType == console.DriveType).FirstOrDefault();
+            consolesList.Remove(selectedconsole);
             return consolesList;
         }
 
-        public void Update(Consoles console)
+        public List<Consoles> Update(Consoles console)
         {
-            var selectedconsole = consolesList.Where(
-                a => a.DriveType == console.DriveType).FirstOrDefault();
-            consolesList.Remove(selectedconsole);
+            Delete(console);
             consolesList.Add(console);
+            return consolesList;
         }
 
         public Consoles? FindById(string console)
