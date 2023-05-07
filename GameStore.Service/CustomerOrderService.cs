@@ -43,15 +43,15 @@ namespace GameStore.Service
 
         public List<CustomerOrders> Delete(CustomerOrders customerOrder)
         {
-            customerorderList = customerorderList.Where(a => a.OrderID != customerOrder.OrderID).ToList();
+            var selectedCustomerOrder = customerorderList.Where(
+               a => a.OrderID == customerOrder.OrderID).FirstOrDefault();
+            customerorderList.Remove(selectedCustomerOrder);
             return customerorderList;
         }
 
         public void Update(CustomerOrders customerOrder)
-        {
-            var selectedCustomerOrder = customerorderList.Where(
-                a => a.OrderID == customerOrder.OrderID).FirstOrDefault();
-            customerorderList.Remove(selectedCustomerOrder);
+        {          
+            Delete(customerOrder);
             customerorderList.Add(customerOrder);
         }
 
