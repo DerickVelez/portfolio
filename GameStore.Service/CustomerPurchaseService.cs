@@ -44,15 +44,15 @@ namespace GameStore.Service
 
         public List<CustomerPurchase> Delete(CustomerPurchase customerpurchase)
         {
-            customerpurchaseList = customerpurchaseList.Where(a => a.PurchaseID != customerpurchase.PurchaseID).ToList();
+            var selectedCustomerPurchase = customerpurchaseList.Where(
+                 a => a.PurchaseID == customerpurchase.PurchaseID).FirstOrDefault();
+            customerpurchaseList.Remove(selectedCustomerPurchase);
             return customerpurchaseList;
         }
 
         public void Update(CustomerPurchase customerpurchase)
         {
-            var selectedCustomerPurchase = customerpurchaseList.Where(
-                a => a.PurchaseID == customerpurchase.PurchaseID).FirstOrDefault();
-            customerpurchaseList.Remove(selectedCustomerPurchase);
+            Delete(customerpurchase);
             customerpurchaseList.Add(customerpurchase);
         }
 
