@@ -51,16 +51,16 @@ namespace GameStore.Service
 
         public List<Customer> Delete(Customer customer)
         {
-            customerList = customerList.Where(a => a.CustomerID != customer.CustomerID).ToList();
+            var selectCustomer = customerList.Where(
+               a => a.CustomerID == customer.CustomerID).FirstOrDefault();
+            customerList.Remove(selectCustomer);
             return customerList;
         }
-        public void Update(Customer customer)
+        public List<Customer> Update(Customer customer)
         {
-
-            var selectCustomer = customerList.Where(
-                a => a.CustomerID == customer.CustomerID).FirstOrDefault();
-            customerList.Remove(selectCustomer);
+            Delete(customer);
             customerList.Add(customer);
+            return customerList;
             
         }
         
