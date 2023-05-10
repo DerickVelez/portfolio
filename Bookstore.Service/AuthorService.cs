@@ -13,11 +13,8 @@ namespace Bookstore.Service;
 public class AuthorService
 {
 
-    private static
-        List<Author> authorList = new List<Author>
-    {
-      
-    };
+    private static List<Author> authorList = new List<Author>();
+
     private string connectionString;
 
     public AuthorService(string connectionString)
@@ -46,7 +43,10 @@ public class AuthorService
         using var con = new SqlConnection(connectionString);
         con.Open();
 
-        var createdAuthor = con.QuerySingle<CreateAuthorRequest>("INSERT INTO Authors (FirstName,LastName) OUTPUT INSERTED.AuthorID, INSERTED.FirstName, INSERTED.LastName VALUES (@FirstName,@LastName);",request);
+        var createdAuthor = con.QuerySingle<CreateAuthorRequest>(
+            "INSERT INTO Authors (FirstName,LastName)" +
+            " OUTPUT INSERTED.AuthorID, INSERTED.FirstName, INSERTED.LastName" +
+            " VALUES (@FirstName,@LastName);",request);
         return createdAuthor;
     }
 

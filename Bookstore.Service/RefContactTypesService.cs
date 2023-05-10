@@ -11,15 +11,7 @@ namespace Bookstore.Service
 {
     public class RefContactTypesService
     {
-        private List<RefContactTypes> refcontacttypesList = new List<RefContactTypes>
-        {
-            //new RefContactTypes
-            //{
-            //    ContactCode = 56,
-            //    ContactDescription = "No Description",
-
-            //}
-        };
+        private List<RefContactTypes> refcontacttypesList = new List<RefContactTypes>();
         public string connectionString;
 
         public RefContactTypesService(String connectionString)
@@ -48,7 +40,8 @@ namespace Bookstore.Service
             using var con = new SqlConnection(connectionString);
             con.Open();
 
-            var createdAuthor = con.QuerySingle<RefContactTypes>("INSERT INTO RefContactTypes (ContactDescription) OUTPUT INSERTED.ContactCode VALUES (@ContactDescription);", refcontacttype);
+            var createdAuthor = con.QuerySingle<RefContactTypes>("INSERT INTO RefContactTypes (ContactDescription) " +
+                "OUTPUT INSERTED.ContactCode VALUES (@ContactDescription);", refcontacttype);
             return createdAuthor;
 
         }
