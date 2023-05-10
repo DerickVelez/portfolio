@@ -19,7 +19,5 @@ namespace Bookstore.Data.Entitites
         public int ContactCellPhoneNumber { get; set; }
 
         public string ContactOtherDetails { get; set; }  
-
-
     }
 }

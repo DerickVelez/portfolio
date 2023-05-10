@@ -23,8 +23,5 @@ namespace Bookstore.Data.Entitites
         public int ItemNumber { get; set; }
 
         public int BookCategoryCode { get; set; }
-
-
-
     }
 }

@@ -19,7 +19,5 @@ namespace Bookstore.Data.Entitites
         public int CustomerPhone { get; set; }
 
         public  string CustomerEmail { get; set; }
-
-
     }
 }
