@@ -69,7 +69,6 @@ namespace Bookstore.Service
         {
             return refcontacttypesList.Where(a => a.ContactCode == ContactCode).FirstOrDefault();
         }
-    }
-
-    
+    }    
 }
+

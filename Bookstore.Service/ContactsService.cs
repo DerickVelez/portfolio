@@ -11,10 +11,7 @@ namespace Bookstore.Service
 {
     public class ContactsService
     {
-        private List<Contacts> contactList = new List<Contacts>
-        {
-          
-        };
+        private List<Contacts> contactList = new List<Contacts>();
 
         public string connectionString;
         // Integrate connection string 
@@ -22,7 +19,6 @@ namespace Bookstore.Service
         {
             this.connectionString = connectionString;
         }
-
 
         //function for no duplicates
         public bool IsAlreadyExist(int contactID, string contactFirstName, string contactLastName)
@@ -48,7 +44,10 @@ namespace Bookstore.Service
             using var con = new SqlConnection(connectionString);
             con.Open();
 
-            var createdContacts = con.QuerySingle<Contacts>("INSERT INTO Contacts (ContactFirstName,ContactLastName,ContactWorkPhoneNumber,ContactCellPhoneNumber,ContactOtherDetails) OUTPUT INSERTED.ContactID, INSERTED.ContactFirstName, INSERTED.ContactLastName, INSERTED.ContactWorkPhoneNumber, INSERTED.ContactCellPhoneNumber, INSERTED.ContactOtherDetails VALUES (@ContactFirstName,@ContactLastName,@ContactWorkPhoneNumber,@ContactCellPhoneNumber,@ContactOtherDetails);", contact);
+            var createdContacts = con.QuerySingle<Contacts>("INSERT INTO Contacts " +
+                "(ContactFirstName,ContactLastName,ContactWorkPhoneNumber,ContactCellPhoneNumber,ContactOtherDetails) " +
+                "OUTPUT INSERTED.ContactID, INSERTED.ContactFirstName, INSERTED.ContactLastName, INSERTED.ContactWorkPhoneNumber, INSERTED.ContactCellPhoneNumber, INSERTED.ContactOtherDetails" +
+                " VALUES (@ContactFirstName,@ContactLastName,@ContactWorkPhoneNumber,@ContactCellPhoneNumber,@ContactOtherDetails);", contact);
             return createdContacts;
         }
 
@@ -69,7 +68,9 @@ namespace Bookstore.Service
             using var con = new SqlConnection(connectionString);
             con.Open();
 
-            var createdAuthor = con.Execute("UPDATE Contacts SET ContactFirstName = @ContactFirstName, ContactLastName = @ContactLastName, ContactWorkPhoneNumber = @ContactWorkPhoneNumber, ContactCellPhoneNumber = @ContactCellPhoneNumber, ContactOtherDetails = @ContactOtherDetails WHERE (ContactID = @ContactID);", contact);
+            var createdAuthor = con.Execute("UPDATE Contacts SET ContactFirstName = @ContactFirstName," +
+                " ContactLastName = @ContactLastName, ContactWorkPhoneNumber = @ContactWorkPhoneNumber, ContactCellPhoneNumber = @ContactCellPhoneNumber,
+                ContactOtherDetails = @ContactOtherDetails WHERE (ContactID = @ContactID);", contact);
             return contact;
 
         }

@@ -11,20 +11,7 @@ namespace Bookstore.Service;
 
 public class BooksService
 {
-    private List<Books> booksList = new List<Books>
-    {
-        //new Books
-        //{
-        //    BookID = 1,
-        //    ISBN = 23465,
-        //    BookTitle = "bokbok",
-        //    PublicationDate = new DateTime(2022, 10, 2),
-        //    BookComment = "no comment",
-        //    AuthorID = 1,
-
-        //}
-
-    };
+    private List<Books> booksList = new List<Books>();
     private string connectionString;
     public BooksService(string connectionString)
     {
@@ -54,7 +41,8 @@ public class BooksService
         using var con = new SqlConnection(connectionString);
         con.Open();
 
-        var createdAuthor = con.QuerySingle<Books>("INSERT INTO Books (ISBN,BookTitle,PublicationDate,BookComment) OUTPUT INSERTED.BookID, INSERTED.ISBN, INSERTED.BookTitle,                                                                                                                 INSERTED.PublicationDate, INSERTED.BookComment VALUES (@ISBN,@BookTitle,@PublicationDate,@BookComment);", books);
+        var createdAuthor = con.QuerySingle<Books>("INSERT INTO Books (ISBN,BookTitle,PublicationDate,BookComment) " +
+            "OUTPUT INSERTED.BookID, INSERTED.ISBN, INSERTED.BookTitle,                                                                                                                 INSERTED.PublicationDate, INSERTED.BookComment VALUES (@ISBN,@BookTitle,@PublicationDate,@BookComment);", books);
         return createdAuthor;
 
     }
@@ -76,7 +64,8 @@ public class BooksService
         using var con = new SqlConnection(connectionString);
         con.Open();
 
-        var createdAuthor = con.Execute("UPDATE Books SET ISBN = @ISBN, BookTitle = @BookTitle, PublicationDate = @PublicationDate WHERE (BookID = @BookID)", book);
+        var createdAuthor = con.Execute("UPDATE Books SET ISBN = @ISBN, BookTitle = @BookTitle, " +
+            "PublicationDate = @PublicationDate WHERE (BookID = @BookID)", book);
         return book;
 
     }

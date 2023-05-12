@@ -64,7 +64,8 @@ public class AuthorService
         using var con = new SqlConnection(connectionString);
         con.Open();
 
-        var createdAuthor = con.Execute("UPDATE Authors SET FirstName = @FirstName, LastName = @LastName WHERE (AuthorID = @AuthorID)", request);
+        var createdAuthor = con.Execute("UPDATE Authors SET FirstName = @FirstName," +
+            " LastName = @LastName WHERE (AuthorID = @AuthorID)", request);
         return request;
     }
 

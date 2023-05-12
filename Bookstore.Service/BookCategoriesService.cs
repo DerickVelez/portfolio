@@ -11,14 +11,7 @@ namespace Bookstore.Service
 {
     public class BookCategoriesService
     {
-        private List<BookCategories> bookcategoriesList = new List<BookCategories>
-        {
-            //new BookCategories
-            //{
-            //    BookCategoryCode = 1,
-            //    BookCategoryDescription = "Horror",
-            //}
-        };
+        private List<BookCategories> bookcategoriesList = new List<BookCategories>();
         private string connectionString;
         public BookCategoriesService (string connectionString)
         {
@@ -45,7 +38,9 @@ namespace Bookstore.Service
             using var con = new SqlConnection(connectionString);
             con.Open();
 
-            var createdBookCategory = con.QuerySingle<BookCategories>("INSERT INTO BookCategories (BookCategoryDescription) OUTPUT INSERTED.BookCategoryCode, INSERTED.BookCategoryDescription VALUES (@BookCategoryDescription);",bookcategory);
+            var createdBookCategory = con.QuerySingle<BookCategories>("INSERT INTO BookCategories " +
+                "(BookCategoryDescription) OUTPUT INSERTED.BookCategoryCode, INSERTED.BookCategoryDescription " +
+                "VALUES (@BookCategoryDescription);",bookcategory);
             bookcategoriesList.Add(bookcategory);
         }
 

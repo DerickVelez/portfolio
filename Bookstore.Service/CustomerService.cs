@@ -11,19 +11,7 @@ namespace Bookstore.Service
 {
     public class CustomerService
     {
-        private List<Customer> customerList = new List<Customer>()
-        {
-            //new Customer
-            //{
-            //    CustomerID = 1,
-            //    CustomerCode = 1,
-            //    CustomerName = "Alvin Almodal",
-            //    CustomerAddress = "Binan,Laguna",
-            //    CustomerPhone = 092346541,
-            //    CustomerEmail = "sahashdl@gmail.com",
-            //},
-
-        };
+        private List<Customer> customerList = new List<Customer>();
         public string connectionString;
 
         public CustomerService(string connectionString)
@@ -53,7 +41,9 @@ namespace Bookstore.Service
             using var con = new SqlConnection(connectionString);
             con.Open();
 
-            var createdAuthor = con.QuerySingle<Customer>("INSERT INTO Customers (CustomerCode,CustomerName,CustomerAddress,CustomerPhone, CustomerEmail) OUTPUT INSERTED.CustomerID, INSERTED.CustomerCode, INSERTED.CustomerName, INSERTED.CustomerAddress, INSERTED.CustomerPhone, INSERTED.CustomerEmail VALUES (@CustomerCode,@CustomerName,@CustomerAddress,@CustomerPhone, @CustomerEmail);", customer);
+            var createdAuthor = con.QuerySingle<Customer>("INSERT INTO Customers (CustomerCode,CustomerName,CustomerAddress,CustomerPhone, CustomerEmail) " +
+                "OUTPUT INSERTED.CustomerID, INSERTED.CustomerCode, INSERTED.CustomerName, INSERTED.CustomerAddress, INSERTED.CustomerPhone, INSERTED.CustomerEmail " +
+                "VALUES (@CustomerCode,@CustomerName,@CustomerAddress,@CustomerPhone, @CustomerEmail);", customer);
             return createdAuthor;
         }
 
@@ -72,7 +62,9 @@ namespace Bookstore.Service
             using var con = new SqlConnection(connectionString);
             con.Open();
 
-            var createdAuthor = con.Execute("UPDATE Customers SET CustomerName = @CustomerName, CustomerAddress = @CustomerAddress, CustomerPhone = @CustomerPhone, CustomerEmail =@CustomerEmail WHERE (CustomerID = @CustomerID)", customer);
+            var createdAuthor = con.Execute("UPDATE Customers SET CustomerName = @CustomerName, CustomerAddress = " +
+                "@CustomerAddress, CustomerPhone = @CustomerPhone, CustomerEmail =@CustomerEmail " +
+                "WHERE (CustomerID = @CustomerID)", customer);
             return customer;
         }
 
