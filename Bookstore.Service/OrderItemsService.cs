@@ -11,16 +11,7 @@ namespace Bookstore.Service;
 
 public class OrderItemsService
 {
-    private List<OrderItems> orderitemsList = new List<OrderItems>
-    {
-        //new OrderItems
-        //{
-        // ItemNumber = 1,
-        // ItemAgreedPrice = 54,
-        // ItemComment = " no comment",
-        //}
-
-    };
+    private List<OrderItems> orderitemsList = new List<OrderItems>();
     public string connectionString;
 
     public OrderItemsService(String connectionString)
@@ -47,7 +38,9 @@ public class OrderItemsService
         using var con = new SqlConnection(connectionString);
         con.Open();
 
-        var createdAuthor = con.QuerySingle<OrderItems>("INSERT INTO OrderItems (ItemAgreedPrice,ItemComment) OUTPUT INSERTED.ItemNumber, INSERTED.ItemAgreedPrice, INSERTED.ItemComment VALUES (@ItemAgreedPrice,@ItemComment);", orderitem);
+        var createdAuthor = con.QuerySingle<OrderItems>("INSERT INTO OrderItems (ItemAgreedPrice,ItemComment) " +
+            "OUTPUT INSERTED.ItemNumber, INSERTED.ItemAgreedPrice, INSERTED.ItemComment " +
+            "VALUES (@ItemAgreedPrice,@ItemComment);", orderitem);
         return createdAuthor;
     }
 
@@ -65,7 +58,8 @@ public class OrderItemsService
         using var con = new SqlConnection(connectionString);
         con.Open();
 
-        var createdAuthor = con.Execute("UPDATE OrderItems SET ItemAgreedPrice = @ItemAgreedPrice, ItemComment = @ItemComment WHERE (ItemNumber = @ItemNumber)", orderitem);
+        var createdAuthor = con.Execute("UPDATE OrderItems SET ItemAgreedPrice = @ItemAgreedPrice, ItemComment " +
+            "= @ItemComment WHERE (ItemNumber = @ItemNumber)", orderitem);
         return orderitem;
     }
 

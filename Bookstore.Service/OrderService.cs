@@ -11,14 +11,7 @@ namespace Bookstore.Service
 {
     public class OrderService
     {
-        public List<Order> orderList = new List<Order>
-        {
-            //new Order
-            //{
-            //    OrderDate = new DateTime(2023,03,10),
-            //    OrderValue = "burger"
-            //}
-        };
+        public List<Order> orderList = new List<Order>();
         public string connectionString;
 
         public OrderService(string connectionString)
@@ -46,7 +39,8 @@ namespace Bookstore.Service
             using var con = new SqlConnection(connectionString);
             con.Open();
 
-            var createdAuthor = con.QuerySingle<Order>("INSERT INTO Orders (OrderDate) OUTPUT INSERTED.OrderValue, INSERTED.OrderDate VALUES (@OrderDate);", order);
+            var createdAuthor = con.QuerySingle<Order>("INSERT INTO Orders (OrderDate) " +
+                "OUTPUT INSERTED.OrderValue, INSERTED.OrderDate VALUES (@OrderDate);", order);
             return createdAuthor;
         }
 
