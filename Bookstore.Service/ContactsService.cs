@@ -69,8 +69,8 @@ namespace Bookstore.Service
             con.Open();
 
             var createdAuthor = con.Execute("UPDATE Contacts SET ContactFirstName = @ContactFirstName," +
-                " ContactLastName = @ContactLastName, ContactWorkPhoneNumber = @ContactWorkPhoneNumber, ContactCellPhoneNumber = @ContactCellPhoneNumber,
-                ContactOtherDetails = @ContactOtherDetails WHERE (ContactID = @ContactID);", contact);
+                " ContactLastName = @ContactLastName, ContactWorkPhoneNumber = @ContactWorkPhoneNumber, ContactCellPhoneNumber = @ContactCellPhoneNumber," +
+                "ContactOtherDetails = @ContactOtherDetails WHERE (ContactID = @ContactID);", contact);
             return contact;
 
         }
