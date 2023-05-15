@@ -51,10 +51,10 @@ namespace CarHire.Service
             Modelslist.Add(model);
         }
 
-        //public Model? FindById(int modelCode)
-        //{
-        //    return Modelslist.Where(unit => unit.ModelCode == modelCode).FirstOrDefault();  
-        //}
+        public Model? FindById(int modelCode)
+        {
+            return Modelslist.Where(unit => unit.ModelCode == modelCode).FirstOrDefault();
+        }
     }
 
 }
