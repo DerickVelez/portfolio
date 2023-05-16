@@ -59,7 +59,6 @@ namespace CarHire.Service
         }
 
         public Customer? FindById(int CustomerId)
-
         {
             return Customerslist.Where(unit => unit.CustomerID == CustomerId).FirstOrDefault();
         }
