@@ -52,7 +52,6 @@ namespace CarHire.Service
         public Manufacturer? FindById(int ManufacturerCode)
         {
             return Manufacturerslist.Where(unit => unit.ManufacturerCode == ManufacturerCode).FirstOrDefault();
-
         }
     }
 }
