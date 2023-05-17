@@ -40,16 +40,16 @@ namespace FlightSchedules.Service
             airportServiceList.Add(airports);
         }
 
-        public void Delete(Airports airports)
+        public List<Airports> Delete(Airports airports)
         {
             var updatedairport = airportServiceList.Where(a => a.AirportCode == airports.AirportCode).FirstOrDefault();
             airportServiceList.Remove(updatedairport);
+            return airportServiceList;
         }
 
         public void Update(Airports airports)
         {
-            var updatedairport = airportServiceList.Where(a => a.AirportCode == airports.AirportCode).FirstOrDefault();
-            airportServiceList.Remove(updatedairport);
+            Delete(airports);
             airportServiceList.Add(airports);
         }
     }
