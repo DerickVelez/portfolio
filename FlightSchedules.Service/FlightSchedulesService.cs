@@ -42,16 +42,16 @@ namespace FlightSchedules.Service
             flightscheduleServiceList.Add(flightSchedule);
         }
 
-        public void Delete(FlightSchedule flightschedule)
+        public List<FlightSchedule> Delete(FlightSchedule flightschedule)
         {
-            var deletedshecdule = flightscheduleServiceList.Where(a => a.FlightNumber == flightschedule.FlightNumber).FirstOrDefault();
-            flightscheduleServiceList.Remove(deletedshecdule);
+            var updatedSchedule = flightscheduleServiceList.Where(a => a.FlightNumber == flightschedule.FlightNumber).FirstOrDefault();
+            flightscheduleServiceList.Remove(updatedSchedule);
+            return flightscheduleServiceList;
         }
 
         public void Update(FlightSchedule flightschedule)
         {
-            var updatedSchedule = flightscheduleServiceList.Where(a => a.FlightNumber == flightschedule.FlightNumber).FirstOrDefault();
-            flightscheduleServiceList.Remove(updatedSchedule);
+            Delete(flightschedule);
             flightscheduleServiceList.Add(flightschedule);
         }
     }
