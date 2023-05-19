@@ -38,16 +38,16 @@ namespace FlightSchedules.Service
             LegsServiceList.Add(legs);
         }
 
-        public void Delete(Legs legs)
+        public List<Legs> Delete(Legs legs)
         {
-            var deletedLegs = LegsServiceList.Where(a => a.LegID == legs.LegID).FirstOrDefault();
-            LegsServiceList.Remove(deletedLegs);
+            var updatedLegs = LegsServiceList.Where(a => a.LegID == legs.LegID).FirstOrDefault();
+            LegsServiceList.Remove(updatedLegs);
+            return LegsServiceList;
         }
 
         public void Update(Legs legs)
         {
-            var updatedLegs = LegsServiceList.Where(a => a.LegID == legs.LegID).FirstOrDefault();
-            LegsServiceList.Remove(updatedLegs);
+            Delete(legs);
             LegsServiceList.Add(legs);
         }
 
