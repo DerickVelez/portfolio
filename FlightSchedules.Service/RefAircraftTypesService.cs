@@ -37,16 +37,16 @@ namespace FlightSchedules.Service
             RefServiceTypesList.Add(refaircrafttype);
         }
 
-        public void Delete(RefAircraftTypes refaircrafttypr)
+        public List<RefAircraftTypes> Delete(RefAircraftTypes refaircrafttypr)
         {
-            var deletedrefaircrafttype = RefServiceTypesList.Where(a => a.AircraftTypeCode == refaircrafttypr.AircraftTypeCode).FirstOrDefault();
-            RefServiceTypesList.Remove(deletedrefaircrafttype);
+            var updatedrefaircrafttype = RefServiceTypesList.Where(a => a.AircraftTypeCode == refaircrafttypr.AircraftTypeCode).FirstOrDefault();
+            RefServiceTypesList.Remove(updatedrefaircrafttype);
+            return RefServiceTypesList;
         }
 
         public void Update(RefAircraftTypes refaircrafttypr)
         {
-            var updatedrefaircrafttype = RefServiceTypesList.Where(a => a.AircraftTypeCode == refaircrafttypr.AircraftTypeCode).FirstOrDefault();
-            RefServiceTypesList.Remove(updatedrefaircrafttype);
+            Delete(refaircrafttypr);
             RefServiceTypesList.Add(refaircrafttypr);
         }
 
