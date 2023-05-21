@@ -36,17 +36,18 @@ namespace FlightSchedules.Service
             refAirlinesServiceList.Add(refairlines);
         }
 
-        public void Delete(RefAirlines refairlines)
-        {
-            var deletedrefairlinecode= refAirlinesServiceList.Where(a => a.Airlinecode == refairlines.Airlinecode).FirstOrDefault();
-            refAirlinesServiceList.Remove(deletedrefairlinecode);
-        }
-
-        public void Update(RefAirlines refairlines)
+        public List<RefAirlines> Delete(RefAirlines refairlines)
         {
             var updatedRefAirlines = refAirlinesServiceList.Where(a => a.Airlinecode == refairlines.Airlinecode).FirstOrDefault();
             refAirlinesServiceList.Remove(updatedRefAirlines);
+            return refAirlinesServiceList;
+        }
+
+        public List<RefAirlines> Update(RefAirlines refairlines)
+        {
+            Delete(refairlines);
             refAirlinesServiceList.Add(refairlines);
+            return refAirlinesServiceList;
         }
 
 
