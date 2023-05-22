@@ -12,7 +12,6 @@ namespace FlightScheduleWebAPI.Controllers
         public static AirportService _airportServiceList = new AirportService();
 
         [HttpGet]
-        
           public List<Airports> Get()
         {
             return _airportServiceList.GetAirports();
@@ -27,6 +26,7 @@ namespace FlightScheduleWebAPI.Controllers
             _airportServiceList.Add(airports);
             return airports;
         }
+
         [HttpPut]
         public Airports Update(Airports airports)
         {
@@ -35,12 +35,10 @@ namespace FlightScheduleWebAPI.Controllers
         }
 
         [HttpDelete]
-
         public Airports Delete(Airports airports)
         {
             _airportServiceList.Delete(airports);
             return airports ;
         }
-
     }
 }

@@ -12,13 +12,12 @@ namespace FlightScheduleWebAPI.Controllers
             public static FlightSchedulesService _flightscheduleList = new FlightSchedulesService();
 
             [HttpGet]
-        
             public List<FlightSchedule> Get()
             {
                 return _flightscheduleList.GetFlightSchedules();
             }
+        
             [HttpPost]
-
             public FlightSchedule Add(FlightSchedule flightSchedule)
             {
                 bool alreadyexist = _flightscheduleList.IsAlreadyRegistered(flightSchedule.FlightNumber);
@@ -27,10 +26,10 @@ namespace FlightScheduleWebAPI.Controllers
                 _flightscheduleList.Add(flightSchedule);
                 return flightSchedule;
             }
+
             [HttpPut]
             public FlightSchedule Update(FlightSchedule flightSchedule)
             {
-
                 _flightscheduleList.Update(flightSchedule);
                 return flightSchedule;
             }
