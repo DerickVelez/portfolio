@@ -12,13 +12,12 @@ namespace FlightScheduleWebAPI.Controllers
         public static RefAircraftTypesService _refAircraftTypesServiceList = new RefAircraftTypesService();
 
         [HttpGet]
-
         public List<RefAircraftTypes> Get()
         {
             return _refAircraftTypesServiceList.GetRefAircraft();
         }
-        [HttpPost]
 
+        [HttpPost]
         public RefAircraftTypes Add(RefAircraftTypes refAircraftTypes)
         {
             bool alreadyexist = _refAircraftTypesServiceList.IsAlreadyRegistered(refAircraftTypes.AircraftTypeCode);
@@ -27,6 +26,7 @@ namespace FlightScheduleWebAPI.Controllers
             _refAircraftTypesServiceList.Add(refAircraftTypes);
             return refAircraftTypes;
         }
+
         [HttpPut]
         public RefAircraftTypes Update(RefAircraftTypes refAircraftTypes)
         {
@@ -34,7 +34,6 @@ namespace FlightScheduleWebAPI.Controllers
             _refAircraftTypesServiceList.Update(refAircraftTypes);
             return refAircraftTypes;
         }
-
 
         [HttpDelete]
         public RefAircraftTypes Delete(RefAircraftTypes flightSchedule)

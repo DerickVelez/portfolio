@@ -13,13 +13,12 @@ namespace FlightScheduleWebAPI.Controllers
         public static RefAirlinesService _refAirlinesServiceList = new RefAirlinesService();
 
         [HttpGet]
-
         public List<RefAirlines> Get()
         {
             return _refAirlinesServiceList.GetRefAirlines();
         }
-        [HttpPost]
 
+        [HttpPost]
         public RefAirlines Add(RefAirlines refAirlines)
         {
             bool alreadyexist = _refAirlinesServiceList.IsAlreadyRegistered(refAirlines.Airlinecode);
@@ -28,6 +27,7 @@ namespace FlightScheduleWebAPI.Controllers
             _refAirlinesServiceList.Add(refAirlines);
             return refAirlines;
         }
+
         [HttpPut]
         public RefAirlines Update(RefAirlines refAirlines)
         {
@@ -35,7 +35,6 @@ namespace FlightScheduleWebAPI.Controllers
             _refAirlinesServiceList.Update(refAirlines);
             return refAirlines;
         }
-
 
         [HttpDelete]
         public RefAirlines Delete(RefAirlines refAirlines)
