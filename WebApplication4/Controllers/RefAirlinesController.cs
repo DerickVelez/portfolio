@@ -36,11 +36,11 @@ namespace FlightScheduleWebAPI.Controllers
             return refAirlines;
         }
 
-        [HttpDelete]
-        public RefAirlines Delete(RefAirlines refAirlines)
-        {
-            _refAirlinesServiceList.Delete(refAirlines);
-            return refAirlines;
-        }
+        //[HttpDelete]
+        //public RefAirlines Delete(RefAirlines refAirlines)
+        //{
+        //    _refAirlinesServiceList.Delete(refAirlines);
+        //    return refAirlines;
+        //}
     }
 }
