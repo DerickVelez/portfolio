@@ -28,13 +28,13 @@ namespace FlightScheduleWebAPI.Controllers
             return refAirlines;
         }
 
-        [HttpPut]
-        public RefAirlines Update(RefAirlines refAirlines)
-        {
+        //[HttpPut]
+        //public RefAirlines Update(RefAirlines refAirlines)
+        //{
 
-            _refAirlinesServiceList.Update(refAirlines);
-            return refAirlines;
-        }
+        //    _refAirlinesServiceList.Update(refAirlines);
+        //    return refAirlines;
+        //}
 
         //[HttpDelete]
         //public RefAirlines Delete(RefAirlines refAirlines)
