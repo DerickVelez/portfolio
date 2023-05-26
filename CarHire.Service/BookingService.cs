@@ -49,9 +49,9 @@ namespace CarHire.Service
            bookinglist.Add(booking);
         }
 
-        public Booking? FindById(int bookingId)
-        {
-            return bookinglist.Where(unit => unit.BookingID == bookingId).FirstOrDefault();
-        }
+        //public Booking? FindById(int bookingId)
+        //{
+        //    return bookinglist.Where(unit => unit.BookingID == bookingId).FirstOrDefault();
+        //}
     }
 }
