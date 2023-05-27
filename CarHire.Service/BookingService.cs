@@ -43,11 +43,11 @@ namespace CarHire.Service
             return bookinglist;
         }
 
-        public void Update(Booking booking)
-        {
-           Delete(booking);
-           bookinglist.Add(booking);
-        }
+        //public void Update(Booking booking)
+        //{
+        //   Delete(booking);
+        //   bookinglist.Add(booking);
+        //}
 
         //public Booking? FindById(int bookingId)
         //{
