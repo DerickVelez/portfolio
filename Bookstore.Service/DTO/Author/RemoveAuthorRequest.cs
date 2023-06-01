@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Service.DTO.Author
 {
-    public class RemoveBookCategoryRequest
+    public class RemoveAuthorRequest
     {
         public int AuthorID { get; set; }
 
