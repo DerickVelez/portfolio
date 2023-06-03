@@ -62,10 +62,10 @@ namespace Bookstore.Service
             return bookcategory; 
         }
 
-        public BookCategories? FindById(int bookcategorycode)
-        {
-            return bookcategoriesList.Where(a => a.BookCategoryCode == bookcategorycode).FirstOrDefault();
-        }
+        //public BookCategories? FindById(int bookcategorycode)
+        //{
+        //    return bookcategoriesList.Where(a => a.BookCategoryCode == bookcategorycode).FirstOrDefault();
+        //}
 
     }
 
