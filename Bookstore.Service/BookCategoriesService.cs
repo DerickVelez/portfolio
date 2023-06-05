@@ -1,4 +1,5 @@
 ﻿using Bookstore.Data.Entitites;
+using Bookstore.Service.DTO.BookCategories;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -33,15 +34,15 @@ namespace Bookstore.Service
             return bookCategories.ToList();
         }
 
-        public void Add(BookCategories bookcategory)
+        public CreateBookCategoryRequest Add(CreateBookCategoryRequest bookcategory)
         {
             using var con = new SqlConnection(connectionString);
             con.Open();
 
-            var createdBookCategory = con.QuerySingle<BookCategories>("INSERT INTO BookCategories " +
+            var createdBookCategory = con.QuerySingle<CreateBookCategoryRequest>("INSERT INTO BookCategories " +
                 "(BookCategoryDescription) OUTPUT INSERTED.BookCategoryCode, INSERTED.BookCategoryDescription " +
                 "VALUES (@BookCategoryDescription);",bookcategory);
-            bookcategoriesList.Add(bookcategory);
+            return createdBookCategory;
         }
 
         public BookCategories Delete(BookCategories bookcategory)
@@ -62,10 +63,10 @@ namespace Bookstore.Service
             return bookcategory; 
         }
 
-        //public BookCategories? FindById(int bookcategorycode)
-        //{
-        //    return bookcategoriesList.Where(a => a.BookCategoryCode == bookcategorycode).FirstOrDefault();
-        //}
+        public bookcategories? findbyid(int bookcategorycode)
+        {
+            return bookcategorieslist.where(a => a.bookcategorycode == bookcategorycode).firstordefault();
+        }
 
     }
 
