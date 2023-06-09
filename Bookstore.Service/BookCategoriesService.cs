@@ -63,10 +63,7 @@ namespace Bookstore.Service
             return bookcategory; 
         }
 
-        public bookcategories? findbyid(int bookcategorycode)
-        {
-            return bookcategorieslist.where(a => a.bookcategorycode == bookcategorycode).firstordefault();
-        }
+        
 
     }
 
