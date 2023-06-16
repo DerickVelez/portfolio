@@ -14,7 +14,6 @@ public class AuthorService
 {
 
     private static List<Author> authorList = new List<Author>();
-
     private string connectionString;
 
     public AuthorService(string connectionString)

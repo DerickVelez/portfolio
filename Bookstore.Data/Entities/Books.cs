@@ -6,22 +6,15 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Data.Entitites
 {
-    public  class Books
-    {
-        public int BookID { get; set; }
-
-        public int ISBN { get; set; }
-
-        public string BookTitle { get; set; }
-
-        public DateTime PublicationDate { get; set; }
-
-        public string BookComment { get; set; }
-
-        public int AuthorID { get; set; }
-
-        public int ItemNumber { get; set; }
-
-        public int BookCategoryCode { get; set; }
-    }
+    public  record Books
+    ( 
+         int BookID,
+         int ISBN, 
+         string BookTitle, 
+         DateTime PublicationDate, 
+         string BookComment,  
+         int AuthorID,  
+         int ItemNumber,
+         int BookCategoryCode
+    );
 }

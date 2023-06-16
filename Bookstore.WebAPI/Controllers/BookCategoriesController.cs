@@ -25,18 +25,19 @@ namespace Bookstore.WebAPI.Controllers
         {
             return _BookCategoriesService.GetBookCategories();
         }
-        [HttpPost]
+        //[HttpPost]
 
-        public BookCategories Add(BookCategories bookCategories)
-        {
-            bool alreadyExist = _BookCategoriesService.IsAlreadyExist(bookCategories.BookCategoryCode,bookCategories.BookCategoryDescription);
-            if (!alreadyExist)
-            {  _BookCategoriesService.Add(bookCategories);
-                return bookCategories;
-            }
-            else 
-                return null;
-        }
+        //public BookCategories AddContact(BookCategories bookCategories)
+        //{
+        //    bool alreadyExist = _BookCategoriesService.IsAlreadyExist(bookCategories.BookCategoryCode,bookCategories.BookCategoryDescription);
+        //    if (!alreadyExist)
+        //    {  _BookCategoriesService.Add(bookcategories);
+        //        return bookCategories;
+        //    }
+        //    else 
+        //        return null; 
+
+
 
         [HttpPut]
         public BookCategories Update(BookCategories bookCategories)

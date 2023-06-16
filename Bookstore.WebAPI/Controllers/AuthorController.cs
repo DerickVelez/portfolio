@@ -1,7 +1,6 @@
 ﻿using Bookstore.Data.Entitites;
 using Bookstore.Service;
 using Bookstore.Service.DTO.Author;
-
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bookstore.WebAPI.Controllers;
@@ -45,12 +44,12 @@ public class AuthorController : ControllerBase
         _AuthorService.Update(response);
         return response;
     }
-
-    [HttpDelete]
-    public RemoveAuthorResponse Delete(RemoveAuthorResponse response)
-    {
-        _AuthorService.DeleteAuthor(response);
-        return response;
-    }
+     
+    //[HttpDelete]
+    //public RemoveAuthorResponse Delete(RemoveAuthorResponse response)
+    //{
+    //    _AuthorService.DeleteAuthor(response);
+    //    return response;
+    //}
     
 }
