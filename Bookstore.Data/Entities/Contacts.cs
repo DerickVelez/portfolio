@@ -6,18 +6,13 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Data.Entitites
 {
-    public class Contacts
-    {
-        public int CondtactID { get; set; }
-
-        public string ContactFirstName { get; set; }
-
-        public string ContactLastName { get; set; }   
-
-        public int ContactWorkPhoneNumber { get; set; }
-
-        public int ContactCellPhoneNumber { get; set; }
-
-        public string ContactOtherDetails { get; set; }  
-    }
+    public record Contacts
+    (
+         int CondtactID,
+        string ContactFirstName, 
+        string ContactLastName,
+        int ContactWorkPhoneNumber, 
+        int ContactCellPhoneNumber,
+        string ContactOtherDetails    
+      );
 }

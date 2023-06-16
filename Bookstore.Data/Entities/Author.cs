@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Data.Entitites
 {
-    public class Author
-    {
-        public int AuthorID { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-    }
+    public record Author
+    (
+         int AuthorID ,
+         string FirstName,
+         string LastName
+    );
 }
+
+
+

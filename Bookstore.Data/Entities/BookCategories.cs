@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Data.Entitites
 {
-    public class BookCategories
-    {
-        public int BookCategoryCode { get; set; }
-
-        public string BookCategoryDescription { get; set; }
-
-    }
+    public record BookCategories
+    (
+         int BookCategoryCode,
+        string BookCategoryDescription
+    );
 }
