@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Bookstore.Data.Entitites
 {
-    public class Order
-    {
-        public DateTime OrderDate { get; set; }
+    public record Order
+    (
+        DateTime OrderDate,
 
-        public string OrderValue { get; set; }
+        string OrderValue,
 
-        public int CustomerID { get; set; }
-    }
+        int CustomerID
+    );
 }
 
     
