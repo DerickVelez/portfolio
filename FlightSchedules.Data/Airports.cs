@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightSchedules.Data
 {
-    public class Airports
+    public record Airports
     {
         public int AirportCode { get; set; }
 
