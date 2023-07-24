@@ -21,6 +21,6 @@ namespace FlightSchedules.Data
         public int AirportElevation { get; set; }
 
         public string OtherDetails { get; set; }
-
+        
     }
 }
