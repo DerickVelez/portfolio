@@ -35,7 +35,7 @@ namespace CarHire.WebAPI.Controller
         [HttpPut]
         public Booking Update(Booking booking)
         {
-            _bookingservice.Update(booking);
+            //_bookingservice.Update(booking);
             return booking;
         }
         [HttpDelete]
