@@ -49,7 +49,7 @@ public class AuthorService
         return createdAuthor;
     }
 
-    public RemoveAuthorRequest DeleteAuthor(RemoveAuthorRequest request)
+    public RemoveAuthorResponse DeleteAuthor(RemoveAuthorResponse request)
     {
         using var con = new SqlConnection(connectionString);
         con.Open();
