@@ -30,10 +30,15 @@ namespace Practice1.Controllers
             return createdEmployee.Entity;
         }
 
-        [HttpPatch]
-        public Employee UpdateEmployees(int employeeId,Employee employee) 
+        [HttpPatch("{EmployeeId}")]
+        public ActionResult<Employee> UpdateEmployees(int employeeId,Employee employee) 
         {
             var existingEmployee = DbContext.Employees.Find(employeeId);
+
+            //if(existingEmployee != null)
+            //{
+            //    return;
+            //}
 
             existingEmployee.Name = employee.Name;
 
@@ -44,6 +49,9 @@ namespace Practice1.Controllers
                 Name = employee.Name,
             };
         }
+
+       
+
 
         [HttpDelete]
         public Employee DeleteEmployee(Employee employee)

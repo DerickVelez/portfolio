@@ -14,7 +14,7 @@ public class AuthorController : ControllerBase
     public AuthorController(IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("DerickServer");
-        var connectionString = configuration.GetSection("HuwowConnectionString:DerickServer").Value.ToString();
+        //var connectionString = configuration.GetSection("HuwowConnectionString:DerickServer").Value.ToString();
         _AuthorService = new AuthorService("Server=DESKTOP-F3KVDMV\\MSSQLSERVER01;Database=Bookstore;Trusted_Connection=True;");
         _AuthorService = new AuthorService(connectionString);
     }
@@ -42,12 +42,12 @@ public class AuthorController : ControllerBase
         _AuthorService.Update(response);
         return response;
     }
-     
-    //[HttpDelete]
-    //public RemoveAuthorResponse Delete(RemoveAuthorResponse response)
-    //{
-    //    _AuthorService.DeleteAuthor(response);
-    //    return response;
-    //}
-    
+
+    [HttpDelete]
+    public RemoveAuthorResponse Delete(RemoveAuthorResponse response)
+    {
+        _AuthorService.DeleteAuthor(response);
+        return response;
+    }
+
 }
