@@ -35,10 +35,10 @@ namespace Practice1.Controllers
         {
             var existingEmployee = DbContext.Employees.Find(employeeId);
 
-            //if(existingEmployee != null)
-            //{
-            //    return;
-            //}
+            if (existingEmployee != null)
+            {
+                return null;
+            }
 
             existingEmployee.Name = employee.Name;
 
@@ -56,7 +56,13 @@ namespace Practice1.Controllers
         [HttpDelete]
         public Employee DeleteEmployee(Employee employee)
         {
-           DbContext.Employees.Remove(employee);
+           var existingEmployee =  DbContext.Employees.Find(employee);
+            if (existingEmployee != null)
+            {
+                return null;
+            }
+
+            DbContext.Employees.Remove(employee);
             DbContext.SaveChanges();
             return employee;
         }
