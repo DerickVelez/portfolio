@@ -50,10 +50,8 @@ namespace Practice1.Controllers
             };
         }
 
-       
-
-
-        [HttpDelete]
+    
+        [HttpDelete("{EmployeeId}")]
         public Employee DeleteEmployee(Employee employee)
         {
            var existingEmployee =  DbContext.Employees.Find(employee);
