@@ -40,13 +40,13 @@ namespace Practice1.Controllers
                 return null;
             }
 
-            existingEmployee.Name = employee.Name;
+            existingEmployee.FirstName = employee.FirstName;
 
             DbContext.SaveChanges();
 
             return new Employee
             {
-                Name = employee.Name,
+                FirstName = employee.FirstName,
             };
         }
 
