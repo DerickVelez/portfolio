@@ -1,4 +1,4 @@
-﻿using CarHire_.Data;
+﻿    using CarHire_.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,9 +56,9 @@ namespace CarHire.Service
             bookingstatuslist.Add(bookingstatus);
         }
 
-        public BookingStatus? FindById(int BookingStatusCode)
-        {
-            return bookingstatuslist.Where(unit => unit.BookingStatusCode == BookingStatusCode).FirstOrDefault();
-        }
+        //public BookingStatus? FindById(int BookingStatusCode)
+        //{
+        //    return bookingstatuslist.Where(unit => unit.BookingStatusCode == BookingStatusCode).FirstOrDefault();
+        //}
     }
 }
