@@ -68,8 +68,8 @@ public class AuthorService
         return request;
     }
 
-    //public Author? FindById(int authorId)
-    //{
-    //    return authorList.Where(a => a.AuthorID == authorId).FirstOrDefault();
-    //}
+    public Author? FindById(int authorId)
+    {
+        return authorList.Where(a => a.AuthorID == authorId).FirstOrDefault();
+    }
 }

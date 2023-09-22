@@ -12,5 +12,7 @@ namespace Practice1.Models
         public string CompanyAddress { get; set; }
         public DateTime DateFounded { get; set; }
 
+        public  int CompanyPhoneNum { get; set; }
+
     }
 }
