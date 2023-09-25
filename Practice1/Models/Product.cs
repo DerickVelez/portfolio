@@ -9,7 +9,7 @@ namespace Practice1.Models
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
 
-        public DateTime ExpiryDate { get; set; }
+        public DateTime ExpiryDate { get; set; xdsd
         public DateTime ManufacturedDate { get; set; }
     }
 }
