@@ -70,6 +70,6 @@ public class AuthorService
 
     public Author? FindById(int authorId)
     {
-        return authorList.Where(a => a.AuthorID == authorId).FirstOrDefault();
+        //return authorList.Where(a => a.AuthorID == authorId).FirstOrDefault();
     }
 }
